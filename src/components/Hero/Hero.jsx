@@ -13,7 +13,7 @@ const Hero = ({ onOpenAdmission }) => {
   const [currentBg, setCurrentBg] = useState(0);
 
   const backgrounds = [
-    'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1920&q=80',
+    'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg',
     'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/207.jpg_fosipe.jpg',
     'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/194.jpg_tmuuye.jpg',
   ];
@@ -70,7 +70,7 @@ const Hero = ({ onOpenAdmission }) => {
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
-        <div className="max-w-4xl">
+        <div className="max-w-7xl">
           {/* Admission Badge */}
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.4)', transitionDelay: '0.1s' }}>

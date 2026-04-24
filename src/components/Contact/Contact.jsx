@@ -84,7 +84,7 @@ const Contact = () => {
           {/* Google Map */}
           <div className="lg:col-span-2 rounded-3xl overflow-hidden shadow-xl" style={{ minHeight: '350px' }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62758.57369753044!2d79.59637!3d10.20737!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5531a0a6c1b0c7%3A0x1a6a7e2e0e5e4b1a!2sKottucherry%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3921.218320490515!2d79.82453907478833!3d10.967050089193796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5517350b1907db%3A0x1bda63e075901122!2sAnnai%20Abirami%20National%20School%2C%20Kottucherry!5e0!3m2!1sen!2sin!4v1713952300000!5m2!1sen!2sin"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: '350px' }}

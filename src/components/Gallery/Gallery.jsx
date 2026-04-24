@@ -5,18 +5,18 @@ import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 const categories = ['All', 'Campus', 'Classrooms', 'Events', 'Activities'];
 
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80', category: 'Campus', label: 'School Building' },
-  { src: 'https://images.unsplash.com/photo-1588072432836-e10032774350?w=600&q=80', category: 'Classrooms', label: 'Smart Classroom' },
-  { src: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&q=80', category: 'Campus', label: 'School Grounds' },
-  { src: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=600&q=80', category: 'Events', label: 'Annual Day' },
-  { src: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80', category: 'Classrooms', label: 'Science Lab' },
-  { src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80', category: 'Activities', label: 'Sports Day' },
-  { src: 'https://images.unsplash.com/photo-1610484826967-09c5720778c7?w=600&q=80', category: 'Events', label: 'Cultural Program' },
-  { src: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&q=80', category: 'Activities', label: 'Student Activities' },
-  { src: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80', category: 'Classrooms', label: 'Computer Lab' },
-  { src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&q=80', category: 'Activities', label: 'Team Building' },
-  { src: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80', category: 'Campus', label: 'Campus View' },
-  { src: 'https://images.unsplash.com/photo-1604881991720-f91add269bed?w=600&q=80', category: 'Events', label: 'Prize Giving' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.32_PM_srsggu.jpg', category: 'Activities', label: 'Sports Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg', category: 'Campus', label: 'School Building' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.44_PM_epkswa.jpg', category: 'Activities', label: 'Sports Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/194.jpg_tmuuye.jpg', category: 'Events', label: 'Annual Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.31_PM_ya9cii.jpg', category: 'Activities', label: 'Sports Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.32_PM_1_q9cfxw.jpg', category: 'Activities', label: 'Sports Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777030613/WhatsApp_Image_2026-04-24_at_5.06.08_PM_i26g4l.jpg', category: 'Activities', label: 'Student Activities' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777030551/WhatsApp_Image_2026-04-24_at_5.04.42_PM_in1xdt.jpg', category: 'Activities', label: 'Student Activities' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.44_PM_1_ffvnkh.jpg', category: 'Activities', label: 'Classroom Activities' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.43_PM_1_qu17vp.jpg', category: 'Activities', label: 'Sport Day' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.42_PM_xqdw2n.jpg', category: 'Classrooms', label: 'Classroom Activities' },
+  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.43_PM_qtvabf.jpg', category: 'Events', label: 'Cultural Fest' },
 ];
 
 const Gallery = () => {

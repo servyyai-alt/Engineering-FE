@@ -12,6 +12,7 @@ const courses = [
     color: '#10b981',
     gradient: 'from-emerald-400 to-teal-600',
     bg: '#f0fdf4',
+    image: 'https://www.scrworldschool.com/website/img/service-popup.png'
   },
   {
     icon: <FaBook className="text-3xl" />,
@@ -19,9 +20,10 @@ const courses = [
     subtitle: 'Upper Primary & Secondary',
     desc: 'Comprehensive secondary education with focus on critical thinking, science, mathematics, and language proficiency.',
     subjects: ['Science', 'Social Science', 'Mathematics', 'English', 'Tamil', 'Computer'],
-    color: '#1d4ed8',
+    color: '#06b6d4',
     gradient: 'from-blue-500 to-indigo-700',
     bg: '#eff6ff',
+    image: 'https://software.edud.in/v-uploads/v-blog-posts/1-big-1723126005.jpg'
   },
   {
     icon: <FaUserGraduate className="text-3xl" />,
@@ -37,6 +39,7 @@ const courses = [
     color: '#f59e0b',
     gradient: 'from-amber-400 to-orange-600',
     bg: '#fffbeb',
+    image: 'https://www.ysschool.org/wp-content/uploads/2020/11/img-22-e1655118054512.jpg'
   },
 ];
 
@@ -84,17 +87,37 @@ const Courses = ({ onOpenAdmission }) => {
               }}
             >
               {/* Card Header */}
-              <div className={`p-6 bg-gradient-to-br ${course.gradient} text-white relative overflow-hidden`}>
-                <div className="absolute -right-6 -top-6 w-32 h-32 rounded-full opacity-20" style={{ background: 'rgba(255,255,255,0.3)' }} />
-                <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4"
-                    style={{ background: 'rgba(255,255,255,0.25)' }}>
-                    {course.icon}
-                  </div>
-                  <div className="text-sm font-semibold opacity-80 mb-1">{course.subtitle}</div>
-                  <h3 className="text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>{course.title}</h3>
-                </div>
-              </div>
+             <div className="p-6 h-40 relative overflow-hidden group">
+  {/* Background Image Container */}
+  <div className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-110">
+    <img 
+      src={course.image} 
+      alt={course.title}
+      className="w-full h-full object-cover"
+    />
+    {/* Dynamic Overlay: Darkens the image so white text stays visible */}
+    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
+  </div>
+
+  {/* Decorative Glass Blob (Kept from your original) */}
+  <div 
+    className="absolute -right-6 -top-6 w-32 h-32 rounded-full opacity-20 z-10" 
+    style={{ background: 'rgba(255,255,255,0.3)', filter: 'blur(20px)' }} 
+  />
+
+  {/* Content Layer */}
+  <div className="relative z-20 h-full flex flex-col justify-end">
+    <div className="text-sm font-semibold text-blue-300 opacity-90 mb-1 tracking-wider uppercase">
+      {course.subtitle}
+    </div>
+    <h3 
+      className="text-2xl font-black text-white leading-tight" 
+      style={{ fontFamily: "'Playfair Display', serif" }}
+    >
+      {course.title}
+    </h3>
+  </div>
+</div>
 
               {/* Card Body */}
               <div className="p-6">

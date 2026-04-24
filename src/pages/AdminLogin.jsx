@@ -1,43 +1,59 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { FaGraduationCap, FaEye, FaEyeSlash, FaLock, FaUser } from 'react-icons/fa';
-import axios from 'axios';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import {
+  FaGraduationCap,
+  FaEye,
+  FaEyeSlash,
+  FaLock,
+  FaUser,
+} from "react-icons/fa";
+import axios from "axios";
+import school_icon from "../assets/school_icon.png";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ username: '', password: '' });
+  const [form, setForm] = useState({ username: "", password: "" });
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.username || !form.password) {
-      toast.error('Please enter credentials');
+      toast.error("Please enter credentials");
       return;
     }
     setLoading(true);
     try {
-      const res = await axios.post('/api/admin/login', form);
-      localStorage.setItem('adminToken', res.data.token);
-      toast.success('Login successful!');
-      navigate('/admin/dashboard');
+      const res = await axios.post("/api/admin/login", form);
+      localStorage.setItem("adminToken", res.data.token);
+      toast.success("Login successful!");
+      navigate("/admin/dashboard");
     } catch (err) {
-      toast.error(err.response?.data?.message || 'Invalid credentials');
+      toast.error(err.response?.data?.message || "Invalid credentials");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div
-      className="min-h-screen flex items-center justify-center p-4"
-      style={{ background: 'linear-gradient(135deg, #0a1628 0%, #1a3a5c 50%, #0a1628 100%)' }}
-    >
-      {/* Decorative circles */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-slate-950">
+      {/* Background Image with Overlay */}
+      <div className="absolute inset-0 z-0">
+        <img
+          src="https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg"
+          alt="School Background"
+          className="w-full h-full object-cover opacity-40 scale-105"
+        />
+        {/* Dark blur overlay to keep the focus on the card */}
+        <div className="absolute inset-0 backdrop-blur-[2px]" />
+      </div>
+
+      {/* Your Decorative floating circles - Kept for depth */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}
@@ -45,82 +61,120 @@ const AdminLogin = () => {
             style={{
               width: `${100 + i * 80}px`,
               height: `${100 + i * 80}px`,
-              background: i % 2 === 0 ? '#1d4ed8' : '#f59e0b',
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              transform: 'translate(-50%, -50%)',
-              animation: `float ${4 + i}s ease-in-out ${i * 0.5}s infinite`,
+              background: i % 2 === 0 ? "#1d4ed8" : "#f59e0b",
+              left: `${(i * 20) % 100}%`,
+              top: `${(i * 15) % 100}%`,
+              transform: "translate(-50%, -50%)",
+              filter: "blur(40px)",
+              animation: `float ${10 + i}s ease-in-out infinite`,
             }}
           />
         ))}
       </div>
 
-      <div className="relative w-full max-w-md">
-        {/* Card */}
+      <div className="relative w-full max-w-md z-20 transition-all duration-700 animate-in fade-in zoom-in-95">
+        {/* Glass Card */}
         <div
-          className="rounded-3xl overflow-hidden shadow-2xl"
-          style={{ background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)' }}
+          className="rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
+          style={{
+            background: "rgba(255,255,255,0.03)",
+            backdropFilter: "blur(30px)",
+            boxShadow: "inset 0 0 20px rgba(255,255,255,0.05)",
+          }}
         >
-          {/* Header */}
-          <div className="p-8 text-center" style={{ background: 'linear-gradient(135deg, #1d4ed8, #1e40af)' }}>
-            <div
-              className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl"
-              style={{ background: 'rgba(255,255,255,0.2)' }}
-            >
-              <FaGraduationCap className="text-white text-4xl" />
+          {/* Header Bar */}
+          <div
+            className="p-8 text-center relative overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(29,78,216,0.9), rgba(30,64,175,0.9))",
+            }}
+          >
+            {/* Glossy shine effect on header */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+
+            <div className="rounded-2xl flex items-center justify-center mx-auto mb-4">
+              <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/20">
+                <img
+                  src={school_icon}
+                  alt="School Logo"
+                  className="w-full h-full object-contain bg-white"
+                />
+              </div>
             </div>
-            <h1 className="text-white text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
+            <h1
+              className="text-white text-2xl font-black tracking-tight"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
               Admin Portal
             </h1>
-            <p className="text-blue-200 text-sm mt-1">Annai Abirami National Hr. Sec. School</p>
+            <p className="text-blue-100 text-xs font-bold uppercase tracking-widest mt-1 opacity-80">
+              Annai Abirami National School
+            </p>
           </div>
 
-          {/* Form */}
-          <div className="p-8">
-            <form onSubmit={handleSubmit} className="space-y-5">
+          {/* Form Area */}
+          <div className="p-10">
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-gray-300 text-sm font-semibold mb-2">Username</label>
-                <div className="relative">
-                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+                <label className="block text-white/60 text-[10px] font-bold uppercase tracking-widest mb-2 ml-1">
+                  Username
+                </label>
+                <div className="relative group">
+                  <FaUser className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-sm group-focus-within:text-blue-400 transition-colors" />
                   <input
                     type="text"
                     name="username"
                     value={form.username}
                     onChange={handleChange}
-                    placeholder="Enter admin username"
-                    className="w-full pl-10 pr-4 py-3.5 rounded-xl text-white placeholder-gray-500 outline-none transition-all focus:ring-2"
+                    placeholder="Admin ID"
+                    className="w-full pl-11 pr-4 py-4 rounded-2xl text-white placeholder-white/20 outline-none transition-all"
                     style={{
-                      background: 'rgba(255,255,255,0.08)',
-                      border: '1px solid rgba(255,255,255,0.15)',
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.1)",
                     }}
-                    onFocus={e => e.target.style.borderColor = '#3b82f6'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.15)'}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = "rgba(59,130,246,0.5)";
+                      e.target.style.backgroundColor = "rgba(255,255,255,0.08)";
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = "rgba(255,255,255,0.1)";
+                      e.target.style.backgroundColor = "rgba(255,255,255,0.05)";
+                    }}
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-gray-300 text-sm font-semibold mb-2">Password</label>
-                <div className="relative">
-                  <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
+                <label className="block text-white/60 text-[10px] font-bold uppercase tracking-widest mb-2 ml-1">
+                  Password
+                </label>
+                <div className="relative group">
+                  <FaLock className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30 text-sm group-focus-within:text-blue-400 transition-colors" />
                   <input
-                    type={showPass ? 'text' : 'password'}
+                    type={showPass ? "text" : "password"}
                     name="password"
                     value={form.password}
                     onChange={handleChange}
-                    placeholder="Enter password"
-                    className="w-full pl-10 pr-12 py-3.5 rounded-xl text-white placeholder-gray-500 outline-none transition-all"
+                    placeholder="••••••••"
+                    className="w-full pl-11 pr-12 py-4 rounded-2xl text-white placeholder-white/20 outline-none transition-all"
                     style={{
-                      background: 'rgba(255,255,255,0.08)',
-                      border: '1px solid rgba(255,255,255,0.15)',
+                      background: "rgba(255,255,255,0.05)",
+                      border: "1px solid rgba(255,255,255,0.1)",
                     }}
-                    onFocus={e => e.target.style.borderColor = '#3b82f6'}
-                    onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.15)'}
+                    onFocus={(e) => {
+                      e.target.style.borderColor = "rgba(59,130,246,0.5)";
+                      e.target.style.backgroundColor = "rgba(255,255,255,0.08)";
+                    }}
+                    onBlur={(e) => {
+                      e.target.style.borderColor = "rgba(255,255,255,0.1)";
+                      e.target.style.backgroundColor = "rgba(255,255,255,0.05)";
+                    }}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPass(!showPass)}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white transition-colors"
                   >
                     {showPass ? <FaEyeSlash /> : <FaEye />}
                   </button>
@@ -130,28 +184,41 @@ const AdminLogin = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 rounded-xl font-bold text-white text-base transition-all hover:scale-[1.02] disabled:opacity-60 mt-4"
-                style={{ background: 'linear-gradient(135deg, #1d4ed8, #1e40af)', boxShadow: '0 6px 25px rgba(29,78,216,0.4)' }}
+                className="w-full py-4 rounded-[20px] font-bold text-white text-base transition-all hover:scale-[1.02] active:scale-95 disabled:opacity-60 mt-4 shadow-xl"
+                style={{
+                  background: "linear-gradient(135deg, #2563eb, #1e40af)",
+                  boxShadow: "0 15px 30px -10px rgba(37,99,235,0.5)",
+                }}
               >
                 {loading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    Logging in...
+                  <span className="flex items-center justify-center gap-3">
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Verifying...
                   </span>
                 ) : (
-                  '🔐 Login to Dashboard'
+                  "Access Dashboard"
                 )}
               </button>
             </form>
 
-            <div className="mt-6 text-center">
-              <a href="/" className="text-gray-400 hover:text-white text-sm transition-colors">
-                ← Back to School Website
+            <div className="mt-8 text-center">
+              <a
+                href="/"
+                className="text-white/40 hover:text-white text-xs transition-all flex items-center justify-center gap-2"
+              >
+                <span className="text-lg">←</span> Back to School Website
               </a>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+          50% { transform: translate(-50%, -50%) translateY(-20px); }
+        }
+      `}</style>
     </div>
   );
 };
