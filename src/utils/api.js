@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || '',
+  // CRA uses `process.env.REACT_APP_*` (not `import.meta.env`)
+  // Keep a safe default so dev works even without a `.env`.
+  baseURL: process.env.REACT_APP_API_URL || 'https://school-be-tc5i.onrender.com',
   headers: { 'Content-Type': 'application/json' },
 });
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
+import api from "../utils/api";
 import {
   FaGraduationCap,
   FaUsers,
@@ -56,7 +56,7 @@ const AdminDashboard = () => {
   const fetchApplications = async () => {
     setLoading(true);
     try {
-      const res = await axios.get("/api/admin/applications", { headers });
+      const res = await api.get("/api/admin/applications", { headers });
       setApplications(res.data.applications);
       const total = res.data.applications.length;
       const pending = res.data.applications.filter(
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
 
   const handleStatusChange = async (id, status) => {
     try {
-      await axios.patch(
+      await api.patch(
         `/api/admin/applications/${id}/status`,
         { status },
         { headers },
@@ -98,7 +98,7 @@ const AdminDashboard = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this application permanently?")) return;
     try {
-      await axios.delete(`/api/admin/applications/${id}`, { headers });
+      await api.delete(`/api/admin/applications/${id}`, { headers });
       toast.success("Application deleted");
       setSelectedApp(null);
       fetchApplications();

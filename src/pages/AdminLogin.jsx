@@ -8,7 +8,7 @@ import {
   FaLock,
   FaUser,
 } from "react-icons/fa";
-import axios from "axios";
+import api from "../utils/api";
 import school_icon from "../assets/school_icon.png";
 
 const AdminLogin = () => {
@@ -28,7 +28,7 @@ const AdminLogin = () => {
     }
     setLoading(true);
     try {
-      const res = await axios.post("/api/admin/login", form);
+      const res = await api.post("/api/admin/login", form);
       localStorage.setItem("adminToken", res.data.token);
       toast.success("Login successful!");
       navigate("/admin/dashboard");

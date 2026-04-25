@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'react-toastify';
 import { FaUpload, FaCheckCircle, FaUser, FaIdCard, FaMapMarkerAlt, FaFileAlt, FaGraduationCap } from 'react-icons/fa';
-import axios from 'axios';
+import api from '../../utils/api';
 
 const admissionClasses = ['LKG', 'UKG', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
 const bloodGroups = ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'];
@@ -68,7 +68,7 @@ const AdmissionForm = ({ variant = 'section' }) => {
       const formData = new FormData();
       Object.entries(form).forEach(([k, v]) => formData.append(k, v));
       Object.entries(files).forEach(([k, v]) => formData.append(k, v));
-      await axios.post('/api/admission', formData);
+      await api.post('/api/admission', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
       setSuccess(true);
       toast.success('Application submitted successfully!');
     } catch (err) {
