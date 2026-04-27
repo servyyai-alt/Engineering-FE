@@ -3,18 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import api from "../utils/api";
 import {
-  FaGraduationCap,
-  FaUsers,
   FaClipboardList,
   FaSignOutAlt,
   FaDownload,
   FaEye,
   FaSearch,
   FaFilter,
-  FaFilePdf,
-  FaImage,
-  FaFile,
-  FaCheckCircle,
   FaClock,
   FaTrash,
   FaEnvelope,
@@ -23,27 +17,35 @@ import {
   FaTimes,
   FaCalendarAlt,
 } from "react-icons/fa";
-import school_icon from '../assets/school_icon.png';
+import duraiLogo from '../assets/durai_logo.svg';
 
 const statusColors = {
-  pending: { bg: "#fffbeb", text: "#d97706", border: "#fcd34d" },
-  approved: { bg: "#f0fdf4", text: "#059669", border: "#6ee7b7" },
-  rejected: { bg: "#fef2f2", text: "#dc2626", border: "#fca5a5" },
+  new: { bg: "#fffbeb", text: "#d97706", border: "#fcd34d" },
+  in_progress: { bg: "#eff6ff", text: "#1d4ed8", border: "#bfdbfe" },
+  closed: { bg: "#f0fdf4", text: "#059669", border: "#6ee7b7" },
 };
+
+const SERVICE_TYPES = [
+  "Aluminium Rolling Machine Manufacturing & Service",
+  "New & Used Machine Buy / Sale",
+  "Machine Service & Maintenance",
+  "Complete Industrial Solutions",
+  "Other",
+];
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
-  const [applications, setApplications] = useState([]);
+  const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [filterClass, setFilterClass] = useState("");
+  const [filterService, setFilterService] = useState("");
   const [filterStatus, setFilterStatus] = useState("");
   const [selectedApp, setSelectedApp] = useState(null);
   const [stats, setStats] = useState({
     total: 0,
-    pending: 0,
-    approved: 0,
-    rejected: 0,
+    new: 0,
+    in_progress: 0,
+    closed: 0,
   });
 
   const token = localStorage.getItem("adminToken");
@@ -56,21 +58,15 @@ const AdminDashboard = () => {
   const fetchApplications = async () => {
     setLoading(true);
     try {
-      const res = await api.get("/api/admin/applications", { headers });
-      setApplications(res.data.applications);
-      const total = res.data.applications.length;
-      const pending = res.data.applications.filter(
-        (a) => a.status === "pending",
-      ).length;
-      const approved = res.data.applications.filter(
-        (a) => a.status === "approved",
-      ).length;
-      const rejected = res.data.applications.filter(
-        (a) => a.status === "rejected",
-      ).length;
-      setStats({ total, pending, approved, rejected });
+      const res = await api.get("/api/admin/inquiries", { headers });
+      setInquiries(res.data.inquiries);
+      const total = res.data.inquiries.length;
+      const newCount = res.data.inquiries.filter((a) => a.status === "new").length;
+      const inProgress = res.data.inquiries.filter((a) => a.status === "in_progress").length;
+      const closed = res.data.inquiries.filter((a) => a.status === "closed").length;
+      setStats({ total, new: newCount, in_progress: inProgress, closed });
     } catch (err) {
-      toast.error("Failed to fetch applications");
+      toast.error("Failed to fetch inquiries");
       if (err.response?.status === 401) {
         localStorage.removeItem("adminToken");
         navigate("/admin/login");
@@ -83,11 +79,11 @@ const AdminDashboard = () => {
   const handleStatusChange = async (id, status) => {
     try {
       await api.patch(
-        `/api/admin/applications/${id}/status`,
+        `/api/admin/inquiries/${id}/status`,
         { status },
         { headers },
       );
-      toast.success(`Application ${status}`);
+      toast.success(`Inquiry updated: ${status}`);
       fetchApplications();
       if (selectedApp?._id === id) setSelectedApp({ ...selectedApp, status });
     } catch {
@@ -96,10 +92,10 @@ const AdminDashboard = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this application permanently?")) return;
+    if (!window.confirm("Delete this inquiry permanently?")) return;
     try {
-      await api.delete(`/api/admin/applications/${id}`, { headers });
-      toast.success("Application deleted");
+      await api.delete(`/api/admin/inquiries/${id}`, { headers });
+      toast.success("Inquiry deleted");
       setSelectedApp(null);
       fetchApplications();
     } catch {
@@ -123,61 +119,46 @@ const AdminDashboard = () => {
 
   const downloadCSV = () => {
     const headers_csv = [
-      "Student Name",
-      "Admission Class",
-      "Parent Name",
-      "Contact",
-      "Blood Group",
-      "Religion",
-      "Caste",
-      "Father Occupation",
-      "Father Income",
-      "Mother Occupation",
-      "Mother Income",
+      "Name",
+      "Phone",
+      "Email",
+      "Company",
+      "City",
+      "Service Type",
       "Status",
       "Date",
+      "Message",
     ];
     const rows = filtered.map((a) => [
-      a.studentName,
-      a.admissionClass,
-      a.parentName,
-      a.contactNumber,
-      a.bloodGroup,
-      a.religion,
-      a.caste,
-      a.fatherOccupation,
-      a.fatherIncome,
-      a.motherOccupation,
-      a.motherIncome,
+      a.name,
+      a.phone,
+      a.email,
+      a.company,
+      a.city,
+      a.serviceType,
       a.status,
       new Date(a.createdAt).toLocaleDateString(),
+      (a.message || "").replaceAll("\n", " "),
     ]);
     const csv = [headers_csv, ...rows].map((r) => r.join(",")).join("\n");
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `admissions_${new Date().toISOString().slice(0, 10)}.csv`;
+    a.download = `inquiries_${new Date().toISOString().slice(0, 10)}.csv`;
     a.click();
   };
 
-  const filtered = applications.filter((app) => {
+  const filtered = inquiries.filter((app) => {
     const matchSearch =
-      app.studentName?.toLowerCase().includes(search.toLowerCase()) ||
-      app.parentName?.toLowerCase().includes(search.toLowerCase()) ||
-      app.contactNumber?.includes(search);
-    const matchClass = filterClass ? app.admissionClass === filterClass : true;
+      app.name?.toLowerCase().includes(search.toLowerCase()) ||
+      app.company?.toLowerCase().includes(search.toLowerCase()) ||
+      app.phone?.includes(search) ||
+      app.email?.toLowerCase().includes(search.toLowerCase());
+    const matchService = filterService ? app.serviceType === filterService : true;
     const matchStatus = filterStatus ? app.status === filterStatus : true;
-    return matchSearch && matchClass && matchStatus;
+    return matchSearch && matchService && matchStatus;
   });
-
-  const docLabels = {
-    birthCertificate: "Birth Certificate",
-    aadhaarProof: "Aadhaar Proof",
-    casteCertificate: "Caste Certificate",
-    transferCertificate: "Transfer Certificate",
-    passportPhoto: "Passport Photo",
-  };
 
   return (
     <div className="min-h-screen" style={{ background: "#f1f5f9" }}>
@@ -196,15 +177,15 @@ const AdminDashboard = () => {
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md border border-white/20">
                 <img
-                  src={school_icon}
-                  alt="School Logo"
+                  src={duraiLogo}
+                  alt="Durai Engineering Works"
                   className="w-full h-full object-contain bg-white"
                 />
               </div>
               <div>
                 <div className="text-white font-bold text-sm">Admin Panel</div>
                 <div className="text-xs" style={{ color: "#f59e0b" }}>
-                  Annai Abirami School
+                  Durai Eng Works
                 </div>
               </div>
             </div>
@@ -218,7 +199,7 @@ const AdminDashboard = () => {
             {[
               {
                 icon: <FaClipboardList />,
-                label: "Applications",
+                label: "Inquiries",
                 active: true,
               },
               // { icon: <FaUsers />, label: 'Students' },
@@ -274,7 +255,7 @@ const AdminDashboard = () => {
               className="text-xl font-black text-gray-900"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Admission Applications
+              Inquiries
             </h1>
             <div className="flex items-center gap-3">
               <button
@@ -301,32 +282,32 @@ const AdminDashboard = () => {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {[
                 {
-                  label: "Total Applications",
+                  label: "Total Inquiries",
                   value: stats.total,
                   icon: <FaClipboardList />,
                   color: "#1d4ed8",
                   bg: "#eff6ff",
                 },
                 {
-                  label: "Pending Review",
-                  value: stats.pending,
+                  label: "New",
+                  value: stats.new,
                   icon: <FaClock />,
                   color: "#d97706",
                   bg: "#fffbeb",
                 },
                 {
-                  label: "Approved",
-                  value: stats.approved,
-                  icon: <FaCheckCircle />,
-                  color: "#059669",
-                  bg: "#f0fdf4",
+                  label: "In Progress",
+                  value: stats.in_progress,
+                  icon: <FaEye />,
+                  color: "#1d4ed8",
+                  bg: "#eff6ff",
                 },
                 {
-                  label: "Rejected",
-                  value: stats.rejected,
+                  label: "Closed",
+                  value: stats.closed,
                   icon: <FaTimes />,
-                  color: "#dc2626",
-                  bg: "#fef2f2",
+                  color: "#059669",
+                  bg: "#f0fdf4",
                 },
               ].map((s, i) => (
                 <div
@@ -364,36 +345,21 @@ const AdminDashboard = () => {
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                 <input
                   type="text"
-                  placeholder="Search by name or phone..."
+                  placeholder="Search by name, company, phone, or email..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm border border-gray-200 outline-none focus:border-blue-400 transition-colors"
                 />
               </div>
               <select
-                value={filterClass}
-                onChange={(e) => setFilterClass(e.target.value)}
+                value={filterService}
+                onChange={(e) => setFilterService(e.target.value)}
                 className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
               >
-                <option value="">All Classes</option>
-                {[
-                  "LKG",
-                  "UKG",
-                  "I",
-                  "II",
-                  "III",
-                  "IV",
-                  "V",
-                  "VI",
-                  "VII",
-                  "VIII",
-                  "IX",
-                  "X",
-                  "XI",
-                  "XII",
-                ].map((c) => (
-                  <option key={c} value={c}>
-                    {c}
+                <option value="">All Services</option>
+                {SERVICE_TYPES.map((t) => (
+                  <option key={t} value={t}>
+                    {t}
                   </option>
                 ))}
               </select>
@@ -403,9 +369,9 @@ const AdminDashboard = () => {
                 className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
               >
                 <option value="">All Status</option>
-                <option value="pending">Pending</option>
-                <option value="approved">Approved</option>
-                <option value="rejected">Rejected</option>
+                <option value="new">New</option>
+                <option value="in_progress">In Progress</option>
+                <option value="closed">Closed</option>
               </select>
               <span className="text-gray-500 text-sm font-medium ml-auto">
                 {filtered.length} records
@@ -420,7 +386,7 @@ const AdminDashboard = () => {
             ) : filtered.length === 0 ? (
               <div className="text-center py-20 text-gray-400">
                 <FaClipboardList className="text-5xl mx-auto mb-4 opacity-30" />
-                <p className="text-lg font-medium">No applications found</p>
+                <p className="text-lg font-medium">No inquiries found</p>
               </div>
             ) : (
               <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
@@ -435,10 +401,10 @@ const AdminDashboard = () => {
                       >
                         {[
                           "#",
-                          "Student",
-                          "Class",
-                          "Parent",
-                          "Contact",
+                          "Name",
+                          "Service",
+                          "Phone",
+                          "Company",
                           "Date",
                           "Status",
                           "Actions",
@@ -455,7 +421,7 @@ const AdminDashboard = () => {
                     <tbody>
                       {filtered.map((app, i) => {
                         const sc =
-                          statusColors[app.status] || statusColors.pending;
+                          statusColors[app.status] || statusColors.new;
                         return (
                           <tr
                             key={app._id}
@@ -473,29 +439,29 @@ const AdminDashboard = () => {
                                       "linear-gradient(135deg, #1d4ed8, #f59e0b)",
                                   }}
                                 >
-                                  {app.studentName?.charAt(0).toUpperCase()}
+                                  {app.name?.charAt(0).toUpperCase()}
                                 </div>
                                 <span className="font-semibold text-gray-900 text-sm">
-                                  {app.studentName}
+                                  {app.name}
                                 </span>
                               </div>
                             </td>
                             <td className="px-4 py-3.5">
                               <span
-                                className="px-2.5 py-1 rounded-lg text-xs font-bold"
+                                className="px-2.5 py-1 rounded-lg text-[11px] font-bold"
                                 style={{
                                   background: "#eff6ff",
                                   color: "#1d4ed8",
                                 }}
                               >
-                                Class {app.admissionClass}
+                                {app.serviceType || "-"}
                               </span>
                             </td>
                             <td className="px-4 py-3.5 text-gray-600 text-sm">
-                              {app.parentName}
+                              {app.phone || "-"}
                             </td>
                             <td className="px-4 py-3.5 text-gray-600 text-sm">
-                              {app.contactNumber}
+                              {app.company || "-"}
                             </td>
                             <td className="px-4 py-3.5 text-gray-400 text-xs">
                               {app.createdAt
@@ -580,33 +546,41 @@ const AdminDashboard = () => {
                   className="text-white font-black text-lg"
                   style={{ fontFamily: "'Playfair Display', serif" }}
                 >
-                  {selectedApp.studentName}
+                  {selectedApp.name}
                 </h2>
                 <p className="text-gray-400 text-sm">
-                  Admission Application · Class {selectedApp.admissionClass}
+                  Inquiry · {selectedApp.serviceType || "—"}
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 {/* Status Buttons */}
                 <button
                   onClick={() =>
-                    handleStatusChange(selectedApp._id, "approved")
+                    handleStatusChange(selectedApp._id, "new")
                   }
-                  disabled={selectedApp.status === "approved"}
+                  disabled={selectedApp.status === "new"}
                   className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all hover:scale-105 disabled:opacity-40"
-                  style={{ background: "#10b981" }}
+                  style={{ background: "#d97706" }}
                 >
-                  ✓ Approve
+                  New
                 </button>
                 <button
                   onClick={() =>
-                    handleStatusChange(selectedApp._id, "rejected")
+                    handleStatusChange(selectedApp._id, "in_progress")
                   }
-                  disabled={selectedApp.status === "rejected"}
+                  disabled={selectedApp.status === "in_progress"}
                   className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all hover:scale-105 disabled:opacity-40"
-                  style={{ background: "#ef4444" }}
+                  style={{ background: "#1d4ed8" }}
                 >
-                  ✗ Reject
+                  In Progress
+                </button>
+                <button
+                  onClick={() => handleStatusChange(selectedApp._id, "closed")}
+                  disabled={selectedApp.status === "closed"}
+                  className="px-4 py-2 rounded-xl text-xs font-bold text-white transition-all hover:scale-105 disabled:opacity-40"
+                  style={{ background: "#10b981" }}
+                >
+                  Closed
                 </button>
                 <button
                   onClick={() => setSelectedApp(null)}
@@ -623,12 +597,12 @@ const AdminDashboard = () => {
                 <span
                   className="px-4 py-1.5 rounded-full text-sm font-bold capitalize"
                   style={{
-                    background: statusColors[selectedApp.status]?.bg,
-                    color: statusColors[selectedApp.status]?.text,
-                    border: `1px solid ${statusColors[selectedApp.status]?.border}`,
+                    background: (statusColors[selectedApp.status] || statusColors.new).bg,
+                    color: (statusColors[selectedApp.status] || statusColors.new).text,
+                    border: `1px solid ${(statusColors[selectedApp.status] || statusColors.new).border}`,
                   }}
                 >
-                  {selectedApp.status} Application
+                  {selectedApp.status}
                 </span>
                 <span className="text-gray-400 text-sm flex items-center gap-1">
                   <FaCalendarAlt className="text-xs" />
@@ -641,191 +615,78 @@ const AdminDashboard = () => {
                 </span>
               </div>
 
-              {/* Info Grid */}
+              {/* Inquiry Details */}
               <div>
                 <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
                   <span
                     className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center"
                     style={{ background: "#1d4ed8" }}
                   >
-                    S
+                    I
                   </span>
-                  Student Details
+                  Inquiry Details
                 </h3>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {[
-                    ["Full Name", selectedApp.studentName],
-                    ["Admission Class", `Class ${selectedApp.admissionClass}`],
-                    ["Blood Group", selectedApp.bloodGroup || "—"],
-                    ["Aadhaar No.", selectedApp.aadhaarNumber || "—"],
-                    ["Religion", selectedApp.religion || "—"],
-                    ["Caste", selectedApp.caste || "—"],
+                    ["Name", selectedApp.name || "—"],
+                    ["Phone", selectedApp.phone || "—"],
+                    ["Email", selectedApp.email || "—"],
+                    ["Company", selectedApp.company || "—"],
+                    ["City", selectedApp.city || "—"],
+                    ["Service Type", selectedApp.serviceType || "—"],
                   ].map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="rounded-xl p-3"
-                      style={{ background: "#f8faff" }}
-                    >
-                      <div className="text-gray-400 text-xs font-medium mb-0.5">
-                        {label}
-                      </div>
-                      <div className="text-gray-900 font-semibold text-sm">
-                        {value}
-                      </div>
+                    <div key={label} className="rounded-xl p-3" style={{ background: "#f8faff" }}>
+                      <div className="text-gray-400 text-xs font-medium mb-0.5">{label}</div>
+                      <div className="text-gray-900 font-semibold text-sm break-words">{value}</div>
                     </div>
                   ))}
                 </div>
-              </div>
-
-              <div>
-                <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                  <span
-                    className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center"
-                    style={{ background: "#f59e0b" }}
-                  >
-                    P
-                  </span>
-                  Parent Details
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    ["Parent/Guardian", selectedApp.parentName],
-                    ["Contact Number", selectedApp.contactNumber],
-                    [
-                      "Father's Occupation",
-                      selectedApp.fatherOccupation || "—",
-                    ],
-                    [
-                      "Father's Income",
-                      selectedApp.fatherIncome
-                        ? `₹ ${selectedApp.fatherIncome}`
-                        : "—",
-                    ],
-                    [
-                      "Mother's Occupation",
-                      selectedApp.motherOccupation || "—",
-                    ],
-                    [
-                      "Mother's Income",
-                      selectedApp.motherIncome
-                        ? `₹ ${selectedApp.motherIncome}`
-                        : "—",
-                    ],
-                  ].map(([label, value]) => (
-                    <div
-                      key={label}
-                      className="rounded-xl p-3"
-                      style={{ background: "#fffbeb" }}
-                    >
-                      <div className="text-gray-400 text-xs font-medium mb-0.5">
-                        {label}
-                      </div>
-                      <div className="text-gray-900 font-semibold text-sm">
-                        {value}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div
-                  className="rounded-xl p-3 mt-3"
-                  style={{ background: "#f0fdf4" }}
-                >
-                  <div className="text-gray-400 text-xs font-medium mb-0.5 flex items-center gap-1">
-                    <FaMapMarkerAlt className="text-xs" /> Address
-                  </div>
-                  <div className="text-gray-900 font-semibold text-sm">
-                    {selectedApp.address || "—"}
+                <div className="rounded-xl p-3 mt-3" style={{ background: "#fff7ed", border: "1px solid rgba(245,158,11,0.25)" }}>
+                  <div className="text-gray-500 text-xs font-medium mb-1">Requirement / Message</div>
+                  <div className="text-gray-900 font-semibold text-sm whitespace-pre-wrap">
+                    {selectedApp.message || "—"}
                   </div>
                 </div>
               </div>
 
-              {/* Documents */}
-              {selectedApp.documents &&
-                Object.keys(selectedApp.documents).length > 0 && (
-                  <div>
-                    <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
-                      <span
-                        className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center"
-                        style={{ background: "#10b981" }}
+              {/* Attachment */}
+              {selectedApp.attachmentUrl && (
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-3 flex items-center gap-2">
+                    <span
+                      className="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center"
+                      style={{ background: "#10b981" }}
+                    >
+                      A
+                    </span>
+                    Attachment
+                  </h3>
+                  <div className="flex items-center justify-between p-3 rounded-xl border" style={{ background: "#f8faff", borderColor: "#e2e8f0" }}>
+                    <div className="min-w-0">
+                      <div className="text-sm font-semibold text-gray-900">Uploaded file</div>
+                      <div className="text-xs text-gray-400 break-all">{selectedApp.attachmentUrl}</div>
+                    </div>
+                    <div className="flex gap-2 flex-shrink-0">
+                      <a
+                        href={selectedApp.attachmentUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:scale-105"
+                        style={{ background: "#eff6ff", color: "#1d4ed8" }}
                       >
-                        D
-                      </span>
-                      Uploaded Documents
-                    </h3>
-                    <div className="grid grid-cols-1 gap-3">
-                      {Object.entries(selectedApp.documents).map(
-                        ([key, url]) => {
-                          if (!url) return null;
-                          const isPdf =
-                            url.toLowerCase().includes(".pdf") ||
-                            url.toLowerCase().includes("pdf");
-                          return (
-                            <div
-                              key={key}
-                              className="flex items-center justify-between p-3 rounded-xl border"
-                              style={{
-                                background: "#f8faff",
-                                borderColor: "#e2e8f0",
-                              }}
-                            >
-                              <div className="flex items-center gap-3">
-                                <div
-                                  className="w-9 h-9 rounded-lg flex items-center justify-center"
-                                  style={{
-                                    background: isPdf ? "#fef2f2" : "#eff6ff",
-                                  }}
-                                >
-                                  {isPdf ? (
-                                    <FaFilePdf className="text-red-500" />
-                                  ) : (
-                                    <FaImage className="text-blue-600" />
-                                  )}
-                                </div>
-                                <div>
-                                  <div className="text-sm font-semibold text-gray-900">
-                                    {docLabels[key] || key}
-                                  </div>
-                                  <div className="text-xs text-gray-400">
-                                    {isPdf ? "PDF Document" : "Image File"}
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="flex gap-2">
-                                <a
-                                  href={url}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:scale-105"
-                                  style={{
-                                    background: "#eff6ff",
-                                    color: "#1d4ed8",
-                                  }}
-                                >
-                                  <FaEye /> View
-                                </a>
-                                <button
-                                  onClick={() =>
-                                    downloadFile(
-                                      url,
-                                      `${selectedApp.studentName}_${key}`,
-                                    )
-                                  }
-                                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:scale-105"
-                                  style={{
-                                    background: "#f0fdf4",
-                                    color: "#059669",
-                                  }}
-                                >
-                                  <FaDownload /> Download
-                                </button>
-                              </div>
-                            </div>
-                          );
-                        },
-                      )}
+                        <FaEye /> View
+                      </a>
+                      <button
+                        onClick={() => downloadFile(selectedApp.attachmentUrl, `inquiry_${selectedApp._id}`)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all hover:scale-105"
+                        style={{ background: "#f0fdf4", color: "#059669" }}
+                      >
+                        <FaDownload /> Download
+                      </button>
                     </div>
                   </div>
-                )}
+                </div>
+              )}
             </div>
           </div>
         </div>

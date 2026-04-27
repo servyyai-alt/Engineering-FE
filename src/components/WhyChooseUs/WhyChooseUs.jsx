@@ -1,64 +1,64 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
 import {
-  FaChalkboardTeacher, FaShieldAlt, FaFlask, FaRunning,
-  FaUserCheck, FaTrophy, FaBook, FaBus
+  FaUserCheck, FaShieldAlt, FaWrench, FaCogs,
+  FaHandshake, FaClock, FaIndustry, FaTools
 } from 'react-icons/fa';
 
 const features = [
   {
-    icon: <FaChalkboardTeacher />,
-    title: 'Highly Qualified Teachers',
-    desc: 'Our faculty comprises experienced educators with advanced degrees and a passion for inspiring young minds to excel.',
+    icon: <FaWrench />,
+    title: 'Expert Service Team',
+    desc: 'Practical troubleshooting and maintenance support focused on uptime and safe operation.',
     color: '#1d4ed8',
     bg: '#eff6ff',
   },
   {
     icon: <FaShieldAlt />,
-    title: 'Discipline & Values',
-    desc: 'We instill strong moral values, respect, and discipline that prepare students for life beyond the classroom.',
+    title: 'Quality & Safety',
+    desc: 'Precision workmanship with safe service practices and quality components.',
     color: '#10b981',
     bg: '#f0fdf4',
   },
   {
-    icon: <FaFlask />,
-    title: 'Science & Computer Labs',
-    desc: 'State-of-the-art science laboratories and computer labs equipped with modern technology for hands-on learning.',
+    icon: <FaCogs />,
+    title: 'Manufacturing Capability',
+    desc: 'Support for aluminium rolling machine manufacturing, spares, and service readiness.',
     color: '#8b5cf6',
     bg: '#f5f3ff',
   },
   {
-    icon: <FaRunning />,
-    title: 'Sports & Activities',
-    desc: 'Comprehensive sports facilities and extracurricular programs that nurture physical fitness and team spirit.',
+    icon: <FaClock />,
+    title: 'Quick Response',
+    desc: 'Fast coordination for breakdown support, parts planning, and on-site visits.',
     color: '#ef4444',
     bg: '#fef2f2',
   },
   {
     icon: <FaUserCheck />,
-    title: 'Individual Student Care',
-    desc: 'Personalized attention to each student\'s unique needs, ensuring no child is left behind in their academic journey.',
+    title: 'Requirement-first Approach',
+    desc: 'Clear understanding of your requirement before recommending a solution or machine option.',
     color: '#f59e0b',
     bg: '#fffbeb',
   },
   {
-    icon: <FaTrophy />,
-    title: 'Excellent Academic Results',
-    desc: 'Consistently achieving 100% board exam pass rates with top district and state level ranks year after year.',
+    icon: <FaIndustry />,
+    title: 'Industrial Solutions',
+    desc: 'End-to-end support for industrial needs—from planning to execution and after-service.',
     color: '#0891b2',
     bg: '#ecfeff',
   },
   {
-    icon: <FaBook />,
-    title: 'Smart Classrooms',
-    desc: 'Digital smart boards and interactive learning tools that make education engaging, visual, and effective.',
+    icon: <FaHandshake />,
+    title: 'Transparent Communication',
+    desc: 'Straightforward timelines and progress updates—no surprises.',
     color: '#6366f1',
     bg: '#eef2ff',
   },
   {
-    icon: <FaBus />,
-    title: 'Transport Facility',
-    desc: 'Safe and reliable transport network covering all nearby areas to ensure hassle-free daily commute for students.',
+    icon: <FaTools />,
+    title: 'Maintenance Planning',
+    desc: 'Preventive schedules and spare planning to keep production stable and predictable.',
     color: '#059669',
     bg: '#ecfdf5',
   },
@@ -81,7 +81,7 @@ const WhyChooseUs = () => {
             What Makes Us <span className="blue-text">Special</span>
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            Discover why thousands of parents trust Annai Abirami School for their children's future.
+            Why manufacturers and service teams rely on Durai Eng Works for rolling machine support.
           </p>
         </div>
 
@@ -112,10 +112,10 @@ const WhyChooseUs = () => {
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { num: '2000+', label: 'Students Enrolled' },
-              { num: '28+', label: 'Years of Excellence' },
-              { num: '50+', label: 'Qualified Faculty' },
-              { num: '100%', label: 'Board Results' },
+              { num: 'Manufacturing', label: 'Machines & Spares' },
+              { num: 'Service', label: 'On-site Support' },
+              { num: 'Buy / Sale', label: 'New & Used Options' },
+              { num: 'Solutions', label: 'Industrial Needs' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
                 <div className="stat-number">{stat.num}</div>

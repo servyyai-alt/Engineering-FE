@@ -1,62 +1,62 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import {
-  FaEye,
+  FaCogs,
   FaBullseye,
-  FaHeart,
   FaShieldAlt,
+  FaHandshake,
   FaQuoteLeft,
   FaMedal,
 } from "react-icons/fa";
-import school_building  from "../../assets/school_building.jpeg";
+import workshopImage from "../../assets/durai_poster.jpeg";
 
 const values = [
   {
-    icon: <FaEye />,
-    title: "Vision",
-    desc: "To be a beacon of excellence in education, producing leaders, scientists, and innovators who transform society.",
+    icon: <FaBullseye />,
+    title: "Focus",
+    desc: "Specialists in aluminium rolling machines with practical, production-first engineering support.",
     color: "#1d4ed8",
   },
   {
-    icon: <FaBullseye />,
-    title: "Mission",
-    desc: "To identify the unique talents of every child and mold them into exceptional individuals through holistic education.",
+    icon: <FaCogs />,
+    title: "Capability",
+    desc: "Manufacturing, service, and retrofit solutions—designed to keep your line running reliably.",
     color: "#f59e0b",
   },
   {
-    icon: <FaHeart />,
-    title: "Values",
-    desc: "Integrity, discipline, compassion, and excellence form the core pillars of our educational philosophy.",
+    icon: <FaShieldAlt />,
+    title: "Quality & Safety",
+    desc: "Precision work, tested components, and safe service practices at every stage of delivery.",
     color: "#10b981",
   },
   {
-    icon: <FaShieldAlt />,
-    title: "Discipline",
-    desc: "We believe disciplined minds create extraordinary futures. Our structured environment nurtures responsibility.",
+    icon: <FaHandshake />,
+    title: "Support",
+    desc: "Clear communication, quick turnaround, and on-site assistance when you need it most.",
     color: "#8b5cf6",
   },
 ];
 
 const milestones = [
   {
-    year: "1995",
-    title: "School Founded",
-    desc: "Established with a vision to provide quality education to rural communities.",
+    year: "01",
+    title: "Consult",
+    desc: "Share your requirement and production goals. We recommend the right solution.",
   },
   {
-    year: "2005",
-    title: "Higher Secondary Added",
-    desc: "Expanded to XI & XII with Science and Computer Science groups.",
+    year: "02",
+    title: "Build / Service",
+    desc: "Manufacture, service, or supply used machines with the right spares and tooling.",
   },
   {
-    year: "2015",
-    title: "Smart Classrooms",
-    desc: "Introduced digital learning infrastructure with modern smart boards.",
+    year: "03",
+    title: "Install & Run",
+    desc: "On-site support for installation, commissioning, and operator guidance.",
   },
   {
-    year: "2023",
-    title: "100% Results",
-    desc: "Achieved record-breaking board exam results with top district ranks.",
+    year: "04",
+    title: "Maintain",
+    desc: "Preventive maintenance and quick troubleshooting to minimize downtime.",
   },
 ];
 
@@ -85,18 +85,17 @@ const AboutUs = () => {
               border: "1px solid #bfdbfe",
             }}
           >
-            About Our School
+            About Durai Eng Works
           </span>
           <h2
             className="text-4xl md:text-5xl font-black text-gray-900 section-title mb-6"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Shaping Tomorrow's <span className="gold-text">Leaders</span> Today
+            Precision Engineering for <span className="gold-text">Industry</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg leading-relaxed">
-            For nearly three decades, Annai Abirami National Hr. Sec. School has
-            been a cornerstone of quality education — nurturing minds, building
-            character, and creating futures that shine.
+            Durai Engineering Works provides end-to-end support for aluminium rolling machines—manufacturing,
+            service, maintenance, and complete industrial solutions tailored to your needs.
           </p>
         </div>
 
@@ -108,8 +107,8 @@ const AboutUs = () => {
           >
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src={school_building}
-                alt="School Campus"
+                src={workshopImage}
+                alt="Durai Engineering Works workshop"
                 className="w-full h-80 object-cover"
               />
               <div
@@ -121,10 +120,10 @@ const AboutUs = () => {
               />
               <div className="absolute bottom-6 left-6 right-6 flex gap-4">
                 {[
-                  { num: "28+", label: "Years" },
-                  { num: "2000+", label: "Students" },
-                  { num: "100%", label: "Results" },
-                  { num: "50+", label: "Faculty" },
+                  { num: "MANUFACTURING", label: "Machines & Spares" },
+                  { num: "SERVICE", label: "On-site Support" },
+                  { num: "BUY/SALE", label: "New & Used" },
+                  { num: "SOLUTIONS", label: "Industrial Needs" },
                 ].map((stat, i) => (
                   <div
                     key={i}
@@ -156,9 +155,8 @@ const AboutUs = () => {
             >
               <FaMedal className="text-2xl mb-1" />
               <span className="text-xs font-bold text-center leading-tight">
-                TOP
-                <br />
-                SCHOOL
+                TRUSTED
+                <br />SUPPORT
               </span>
             </div>
           </div>
@@ -175,30 +173,26 @@ const AboutUs = () => {
               className="text-3xl font-black text-gray-900 mb-4"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
-              Chairman's Message
+              Proprietor's Message
             </h3>
             <p className="text-gray-600 leading-relaxed mb-4 text-base">
-              "At Annai Abirami National School, we believe every child is born
-              with unique gifts. Our role is not just to educate, but to awaken
-              the extraordinary potential within each student."
+              "We focus on practical engineering solutions that keep production moving.
+              Whether you need a new machine, a used machine, or urgent service support—our team is ready."
             </p>
             <p className="text-gray-600 leading-relaxed mb-6 text-base">
-              "Our mission is to identify the unique talents of every child and
-              mold them into exceptional leaders and scientists — individuals
-              who will shape the future of our nation and the world with
-              integrity, knowledge, and compassion."
+              "Our goal is simple: quality workmanship, transparent communication, and reliable after-service."
             </p>
             <div
               className="flex items-center gap-4 p-4 rounded-2xl"
               style={{ background: "#eff6ff", border: "1px solid #bfdbfe" }}
             >
               <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-blue-800 flex items-center justify-center text-white text-xl font-bold flex-shrink-0">
-                CH
+                DR
               </div>
               <div>
-                <div className="font-bold text-gray-900">School Chairman</div>
+                <div className="font-bold text-gray-900">S. Durai Rajendran</div>
                 <div className="text-sm text-gray-500">
-                  Annai Abirami National Hr. Sec. School
+                  Proprietor, Durai Engineering Works
                 </div>
                 <div className="flex gap-1 mt-1">
                   {[...Array(5)].map((_, i) => (
@@ -239,7 +233,7 @@ const AboutUs = () => {
           ))}
         </div>
 
-        {/* School Journey Timeline */}
+        {/* Work Process Timeline */}
         <div
           className={`transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
@@ -247,7 +241,7 @@ const AboutUs = () => {
             className="text-3xl font-black text-center text-gray-900 mb-12"
             style={{ fontFamily: "'Playfair Display', serif" }}
           >
-            Our <span className="gold-text">Journey</span>
+            How We <span className="gold-text">Work</span>
           </h3>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {milestones.map((m, i) => (

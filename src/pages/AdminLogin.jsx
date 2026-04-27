@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
-  FaGraduationCap,
   FaEye,
   FaEyeSlash,
   FaLock,
   FaUser,
 } from "react-icons/fa";
 import api from "../utils/api";
-import school_icon from "../assets/school_icon.png";
+import duraiLogo from "../assets/durai_logo.svg";
+import bg from "../assets/durai_poster.jpeg";
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -44,8 +44,8 @@ const AdminLogin = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg"
-          alt="School Background"
+          src={bg}
+          alt="Durai Engineering Works"
           className="w-full h-full object-cover opacity-40 scale-105"
         />
         {/* Dark blur overlay to keep the focus on the card */}
@@ -96,8 +96,8 @@ const AdminLogin = () => {
             <div className="rounded-2xl flex items-center justify-center mx-auto mb-4">
               <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/20">
                 <img
-                  src={school_icon}
-                  alt="School Logo"
+                  src={duraiLogo}
+                  alt="Durai Engineering Works"
                   className="w-full h-full object-contain bg-white"
                 />
               </div>
@@ -109,7 +109,7 @@ const AdminLogin = () => {
               Admin Portal
             </h1>
             <p className="text-blue-100 text-xs font-bold uppercase tracking-widest mt-1 opacity-80">
-              Annai Abirami National School
+              Durai Engineering Works
             </p>
           </div>
 
@@ -206,7 +206,7 @@ const AdminLogin = () => {
                 href="/"
                 className="text-white/40 hover:text-white text-xs transition-all flex items-center justify-center gap-2"
               >
-                <span className="text-lg">←</span> Back to School Website
+                <span className="text-lg">←</span> Back to Website
               </a>
             </div>
           </div>

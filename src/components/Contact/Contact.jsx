@@ -12,31 +12,31 @@ import {
 import locationQr from "../../assets/location_qr.jpeg";
 
 const MAPS_LINK =
-  "https://www.google.com/maps/search/?api=1&query=Annai%20Abirami%20National%20School%2C%20Kottucherry";
+  "https://www.google.com/maps/search/?api=1&query=Durai%20Engineering%20Works%2C%20Wall%20Tax%20Road%2C%20Chennai%20600079";
 
 const contactInfo = [
   {
     icon: <FaMapMarkerAlt className="text-2xl" />,
     title: "Our Address",
-    lines: ["No.3, Kamarajar Salai,", "Kottucherry, Tamil Nadu"],
+    lines: ["Office: No.113, Hood Wharf 1st Lane,", "V.O.C Road, Wall Tax Road, Chennai - 600079"],
     color: "#ef4444",
     bg: "#fef2f2",
   },
   {
     icon: <FaPhone className="text-2xl" />,
     title: "Phone Numbers",
-    lines: ["9787298569", "9842270628"],
+    lines: ["98849 57853", "94876 24853"],
     color: "#10b981",
     bg: "#f0fdf4",
-    href: "tel:9787298569",
+    href: "tel:9884957853",
   },
   {
     icon: <FaEnvelope className="text-2xl" />,
     title: "Email Address",
-    lines: ["annaiabiraminationalschool", "@gmail.com"],
+    lines: ["duraiengineeringworks", "@example.com"],
     color: "#1d4ed8",
     bg: "#eff6ff",
-    href: "mailto:annaiabiraminationalschool@gmail.com",
+    href: "mailto:duraiengineeringworks@example.com",
   },
   {
     isQr: true,
@@ -74,8 +74,7 @@ const Contact = () => {
             Contact <span className="blue-text">Us</span>
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            We'd love to hear from you. Reach out for admissions, queries, or
-            just to say hello!
+            Reach out for machine requirements, service support, and industrial solutions.
           </p>
         </div>
 
@@ -99,9 +98,9 @@ const Contact = () => {
               
               {c.isQr ? (
                 <div className="flex flex-col items-center gap-2">
-                   <img
+                  <img
                     src={locationQr}
-                    alt="School location QR code"
+                    alt="Location QR code"
                     className="w-20 h-20 object-contain rounded-lg border border-gray-200 bg-white p-1"
                     loading="lazy"
                   />
@@ -146,14 +145,14 @@ const Contact = () => {
             style={{ minHeight: "350px" }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.142385153288!2d79.82453907412762!3d10.967055354511211!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5517350b1907db%3A0x1bda23e075901122!2sAnnai%20Abirami%20National%20School%2C%20Kottucherry!5e0!3m2!1sen!2sin!4v1714055940000!5m2!1sen!2sin"
+              src="https://www.google.com/maps?q=Durai%20Engineering%20Works%2C%20Wall%20Tax%20Road%2C%20Chennai%20600079&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: "350px" }}
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Annai Abirami National School Location"
+              title="Durai Engineering Works Location"
             />
           </div>
 
@@ -174,9 +173,8 @@ const Contact = () => {
 
               <div className="space-y-3 mb-6">
                 <a
-                  href="https://www.instagram.com/ANNAI_ABIRAMI_SCHOOL_OFFICAL"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
                   className="flex items-center gap-4 p-4 rounded-xl transition-all hover:scale-105"
                   style={{
                     background: "rgba(225,48,108,0.15)",
@@ -192,15 +190,14 @@ const Contact = () => {
                       Instagram
                     </div>
                     <div className="text-gray-400 text-xs">
-                      @ANNAI_ABIRAMI_SCHOOL_OFFICAL
+                      Add your Instagram
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://www.facebook.com/AnnaiAbirami"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#"
+                  onClick={(e) => e.preventDefault()}
                   className="flex items-center gap-4 p-4 rounded-xl transition-all hover:scale-105"
                   style={{
                     background: "rgba(66,103,178,0.15)",
@@ -216,13 +213,13 @@ const Contact = () => {
                       Facebook
                     </div>
                     <div className="text-gray-400 text-xs">
-                      AnnaiAbirami School
+                      Add your Facebook
                     </div>
                   </div>
                 </a>
 
                 <a
-                  href="https://wa.me/919787298569?text=Thank%20you%20choosing%20Annai%20Abirami%20School.%20How%20can%20I%20help%20you%3F"
+                  href="https://wa.me/919884957853?text=Hello%20Durai%20Eng%20Works%2C%20I%20need%20support%20for%20an%20aluminium%20rolling%20machine."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 p-4 rounded-xl transition-all hover:scale-105"
@@ -240,7 +237,7 @@ const Contact = () => {
                       WhatsApp
                     </div>
                     <div className="text-gray-400 text-xs">
-                      Chat with us: 9787298569
+                      Chat with us: 98849 57853
                     </div>
                   </div>
                 </a>
@@ -253,7 +250,7 @@ const Contact = () => {
                   background: "linear-gradient(135deg, #f59e0b, #d97706)",
                 }}
               >
-                📥 Download Brochure
+                Request Catalogue
               </button>
             </div>
           </div>

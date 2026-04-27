@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.876f7ec8.css",
-    "main.js": "/static/js/main.349405af.js",
-    "static/media/school_building.jpeg": "/static/media/school_building.7142ec0a6ecdf001d00b.jpeg",
-    "static/media/school_icon.png": "/static/media/school_icon.e567a71de2f71cd52496.png",
+    "main.css": "/static/css/main.03b3003c.css",
+    "main.js": "/static/js/main.2e19a91b.js",
+    "static/media/durai_poster.jpeg": "/static/media/durai_poster.d1c9010f922958704f9d.jpeg",
     "static/media/location_qr.jpeg": "/static/media/location_qr.2d86f2406e418f1e6c20.jpeg",
     "index.html": "/index.html",
-    "main.876f7ec8.css.map": "/static/css/main.876f7ec8.css.map",
-    "main.349405af.js.map": "/static/js/main.349405af.js.map"
+    "static/media/durai_logo.svg": "/static/media/durai_logo.38688e6a33367e2cadbb001ef2d605cb.svg",
+    "main.03b3003c.css.map": "/static/css/main.03b3003c.css.map",
+    "main.2e19a91b.js.map": "/static/js/main.2e19a91b.js.map"
   },
   "entrypoints": [
-    "static/css/main.876f7ec8.css",
-    "static/js/main.349405af.js"
+    "static/css/main.03b3003c.css",
+    "static/js/main.2e19a91b.js"
   ]
 }

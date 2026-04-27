@@ -3,35 +3,35 @@ import { FaQuoteLeft, FaStar, FaChevronLeft, FaChevronRight } from 'react-icons/
 
 const testimonials = [
   {
-    name: 'Priya Ramesh',
-    role: 'Parent of Class X Student',
-    text: 'My daughter has transformed completely since joining Annai Abirami School. The teachers are incredibly dedicated and the smart classroom environment makes learning truly engaging.',
+    name: 'Plant Manager',
+    role: 'Rolling Unit, Chennai',
+    text: 'Quick response and practical service support. The maintenance guidance helped us reduce downtime significantly.',
     rating: 5,
-    avatar: 'PR',
+    avatar: 'PM',
     color: '#1d4ed8',
   },
   {
-    name: 'Karthik Selvam',
-    role: 'Parent of Class XII Student',
-    text: 'My son scored 98% in board exams and got into his dream medical college. The biology group teachers here are exceptional. We are extremely proud and grateful.',
+    name: 'Procurement Lead',
+    role: 'Industrial Buyer',
+    text: 'Transparent communication and reliable machine options. The buy/sale support and service readiness were smooth.',
     rating: 5,
-    avatar: 'KS',
+    avatar: 'PL',
     color: '#10b981',
   },
   {
-    name: 'Meena Krishnan',
-    role: 'Alumni - Class of 2020',
-    text: 'I studied from LKG to XII here. This school shaped who I am today. The values and discipline I learned here helped me secure a government job at 22. Forever grateful!',
+    name: 'Maintenance Supervisor',
+    role: 'Aluminium Plant',
+    text: 'Good workmanship and dependable after-service. The team understands production constraints and works accordingly.',
     rating: 5,
-    avatar: 'MK',
+    avatar: 'MS',
     color: '#f59e0b',
   },
   {
-    name: 'Suresh Kumar',
-    role: 'Parent of Twin Students',
-    text: 'Both my children are studying here and I couldn\'t be happier. The individual attention each teacher gives is remarkable. The school genuinely cares about every child.',
+    name: 'Workshop Owner',
+    role: 'Machine Service',
+    text: 'Strong technical support and spares planning. Helpful for keeping machines stable and consistent.',
     rating: 5,
-    avatar: 'SK',
+    avatar: 'WO',
     color: '#8b5cf6',
   },
 ];
@@ -52,10 +52,10 @@ const Testimonials = () => {
         <div className="text-center mb-12">
           <span className="inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-4"
             style={{ background: 'rgba(245,158,11,0.15)', color: '#f59e0b', border: '1px solid rgba(245,158,11,0.3)' }}>
-            What Parents Say
+            What Clients Say
           </span>
           <h2 className="text-4xl font-black text-white mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
-            Trusted by <span className="gold-text">Thousands</span> of Families
+            Trusted for <span className="gold-text">Industrial</span> Support
           </h2>
         </div>
 

@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { FaArrowRight, FaPhoneAlt, FaStar, FaUsers, FaTrophy, FaBook, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaArrowRight, FaPhoneAlt, FaStar, FaCogs, FaIndustry, FaWrench, FaExchangeAlt } from 'react-icons/fa';
+import heroBg from '../../assets/durai_poster.jpeg';
 
 const highlights = [
-  { icon: <FaBook />, label: 'LKG to XII', color: '#3b82f6' },
-  { icon: <FaChalkboardTeacher />, label: 'Smart Classrooms', color: '#f59e0b' },
-  { icon: <FaUsers />, label: 'Experienced Teachers', color: '#10b981' },
-  { icon: <FaTrophy />, label: 'Best Results', color: '#ef4444' },
+  { icon: <FaIndustry />, label: 'Rolling Machine Specialists', color: '#f59e0b' },
+  { icon: <FaCogs />, label: 'Manufacturing & Service', color: '#3b82f6' },
+  { icon: <FaExchangeAlt />, label: 'New & Used Buy / Sale', color: '#10b981' },
+  { icon: <FaWrench />, label: 'Maintenance & Spares', color: '#ef4444' },
 ];
 
-const Hero = ({ onOpenAdmission }) => {
+const Hero = () => {
   const [loaded, setLoaded] = useState(false);
-  const [currentBg, setCurrentBg] = useState(0);
-
-  const backgrounds = [
-    'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg',
-    'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/207.jpg_fosipe.jpg',
-    'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/194.jpg_tmuuye.jpg',
-  ];
 
   useEffect(() => {
     setLoaded(true);
-    const interval = setInterval(() => {
-      setCurrentBg((prev) => (prev + 1) % backgrounds.length);
-    }, 3000);
-    return () => clearInterval(interval);
   }, []);
 
   const scrollTo = (id) => {
@@ -33,19 +23,16 @@ const Hero = ({ onOpenAdmission }) => {
 
   return (
     <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Background Images */}
-      {backgrounds.map((bg, i) => (
-        <div
-          key={i}
-          className="absolute inset-0 transition-opacity duration-1500"
-          style={{
-            backgroundImage: `url(${bg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            opacity: currentBg === i ? 1 : 0,
-          }}
-        />
-      ))}
+      {/* Background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          backgroundImage: `url(${heroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: 'scale(1.05)',
+        }}
+      />
 
       {/* Overlay */}
       <div className="absolute inset-0 hero-overlay" />
@@ -71,14 +58,14 @@ const Hero = ({ onOpenAdmission }) => {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="max-w-7xl">
-          {/* Admission Badge */}
+          {/* Badge */}
           <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
             style={{ background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.4)', transitionDelay: '0.1s' }}>
             <div className="w-2 h-2 rounded-full bg-red-400 animate-pulse" />
-            <span className="text-red-300 text-sm font-semibold tracking-wide">ADMISSION OPEN 2025-26</span>
+            <span className="text-red-200 text-sm font-semibold tracking-wide">FAST RESPONSE • FACTORY SUPPORT</span>
           </div>
 
-          {/* School Name */}
+          {/* Company Name */}
           <h1
             className={`text-white font-black leading-tight mb-2 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{
@@ -88,7 +75,7 @@ const Hero = ({ onOpenAdmission }) => {
               transitionDelay: '0.2s',
             }}
           >
-            ANNAI ABIRAMI
+            DURAI ENG WORKS
           </h1>
           <h2
             className={`font-bold mb-4 transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
@@ -100,7 +87,7 @@ const Hero = ({ onOpenAdmission }) => {
               transitionDelay: '0.3s',
             }}
           >
-            NATIONAL HR. SEC. SCHOOL
+            ALUMINIUM ROLLING MACHINE SPECIALISTS
           </h2>
 
           {/* Stars */}
@@ -109,7 +96,7 @@ const Hero = ({ onOpenAdmission }) => {
             {[...Array(5)].map((_, i) => (
               <FaStar key={i} className="text-yellow-400 text-base" />
             ))}
-            <span className="text-gray-300 text-sm ml-2">Premium Educational Institution</span>
+            <span className="text-gray-200 text-sm ml-2">Trusted industrial partner</span>
           </div>
 
           {/* Tagline */}
@@ -128,7 +115,7 @@ const Hero = ({ onOpenAdmission }) => {
                 fontSize: 'clamp(2rem, 4vw, 3.5rem)',
               }}
             >
-              "Born to Win"
+              "Built for Production"
             </span>
           </div>
 
@@ -136,9 +123,8 @@ const Hero = ({ onOpenAdmission }) => {
             className={`text-gray-300 text-lg mb-10 max-w-xl leading-relaxed transition-all duration-700 ${loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
             style={{ transitionDelay: '0.5s' }}
           >
-            Empowering young minds from LKG to XII with world-class education, 
-            discipline, and values. Where every child's potential becomes their 
-            greatest achievement.
+            Manufacturing, service, and complete solutions for aluminium rolling machines.
+            Get support for new & used machines, preventive maintenance, and industrial requirements.
           </p>
 
           {/* CTA Buttons */}
@@ -147,10 +133,10 @@ const Hero = ({ onOpenAdmission }) => {
             style={{ transitionDelay: '0.6s' }}
           >
             <button
-              onClick={() => (onOpenAdmission ? onOpenAdmission() : scrollTo('#admission'))}
+              onClick={() => scrollTo('#inquiry')}
               className="btn-primary flex items-center gap-2"
             >
-              Apply Admission <FaArrowRight className="text-sm" />
+              Get Quote <FaArrowRight className="text-sm" />
             </button>
             <button
               onClick={() => scrollTo('#contact')}
@@ -195,15 +181,15 @@ const Hero = ({ onOpenAdmission }) => {
         <div className="flex items-center py-3 px-4">
           <span className="text-white text-xs font-bold px-3 py-1 rounded-full mr-4 flex-shrink-0"
             style={{ background: '#f59e0b', color: '#0a1628' }}>
-            📢 NEWS
+            UPDATES
           </span>
           <div className="overflow-hidden flex-1">
             <div className="news-ticker text-white text-sm whitespace-nowrap">
-              🎉 Admission Open for 2025-26 Academic Year &nbsp;&nbsp;|&nbsp;&nbsp; 
-              🏆 100% Board Exam Results Achieved &nbsp;&nbsp;|&nbsp;&nbsp; 
-              📚 Smart Classrooms with Digital Learning &nbsp;&nbsp;|&nbsp;&nbsp; 
-              🌟 Join us for Excellence in Education &nbsp;&nbsp;|&nbsp;&nbsp;
-              📞 Call: 9787298569 / 9842270628 &nbsp;&nbsp;|&nbsp;&nbsp;
+              Aluminium Rolling Machine Manufacturing & Service &nbsp;&nbsp;|&nbsp;&nbsp;
+              New & Used Machine Buy / Sale &nbsp;&nbsp;|&nbsp;&nbsp;
+              Service & Maintenance Support &nbsp;&nbsp;|&nbsp;&nbsp;
+              Complete Solutions for Industrial Needs &nbsp;&nbsp;|&nbsp;&nbsp;
+              Call: 98849 57853 / 94876 24853 &nbsp;&nbsp;|&nbsp;&nbsp;
             </div>
           </div>
         </div>

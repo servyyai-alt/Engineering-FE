@@ -1,39 +1,39 @@
 import React from 'react';
 import { useInView } from 'react-intersection-observer';
-import { FaBullhorn, FaCalendarAlt, FaTrophy, FaBookOpen, FaRunning } from 'react-icons/fa';
+import { FaBullhorn, FaCalendarAlt, FaIndustry, FaWrench, FaExchangeAlt } from 'react-icons/fa';
 
 const news = [
   {
-    icon: <FaTrophy />,
-    badge: 'Achievement',
+    icon: <FaIndustry />,
+    badge: 'Manufacturing',
     badgeColor: '#f59e0b',
-    title: '100% Board Exam Results 2024-25',
-    desc: 'All our Class X and XII students passed with distinction. 15 students secured above 95% marks in board examinations.',
-    date: 'April 2025',
+    title: 'Rolling Machine Manufacturing & Service',
+    desc: 'Build, service, and support for aluminium rolling machines with production-first engineering.',
+    date: 'Ongoing',
+  },
+  {
+    icon: <FaExchangeAlt />,
+    badge: 'Buy / Sale',
+    badgeColor: '#10b981',
+    title: 'New & Used Machines',
+    desc: 'Support for buying and selling machines, including service readiness and spares planning.',
+    date: 'Available',
+  },
+  {
+    icon: <FaWrench />,
+    badge: 'Maintenance',
+    badgeColor: '#1d4ed8',
+    title: 'Service & Maintenance Support',
+    desc: 'Preventive maintenance and breakdown troubleshooting to reduce downtime.',
+    date: 'On-call',
   },
   {
     icon: <FaBullhorn />,
-    badge: 'Admission',
+    badge: 'Solutions',
     badgeColor: '#ef4444',
-    title: 'Admissions Open for 2025-26',
-    desc: 'Applications are now being accepted for LKG through XII. Limited seats available. Apply early to secure your child\'s place.',
-    date: 'May 2025',
-  },
-  {
-    icon: <FaBookOpen />,
-    badge: 'Academic',
-    badgeColor: '#1d4ed8',
-    title: 'New Smart Classroom Technology',
-    desc: 'We have upgraded all classrooms with the latest interactive digital boards and high-speed internet connectivity.',
-    date: 'March 2025',
-  },
-  {
-    icon: <FaRunning />,
-    badge: 'Sports',
-    badgeColor: '#10b981',
-    title: 'District Sports Champions 2025',
-    desc: 'Our students won gold medals in Athletics, Kabaddi, and Volleyball at the District-level inter-school sports meet.',
-    date: 'February 2025',
+    title: 'Complete Industrial Solutions',
+    desc: 'End-to-end support for industrial requirements—planning, execution, and after-service.',
+    date: 'Now',
   },
 ];
 
@@ -50,10 +50,10 @@ const NewsSection = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 section-title mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
-            News & <span className="gold-text">Announcements</span>
+            Capabilities & <span className="gold-text">Updates</span>
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Stay updated with the latest happenings, achievements, and announcements from our school.
+            Explore how we support production with reliable machines and fast service.
           </p>
         </div>
 
@@ -90,26 +90,26 @@ const NewsSection = () => {
           ))}
         </div>
 
-        {/* Results Highlights Banner */}
+        {/* Support Highlights Banner */}
         <div
           className={`mt-10 rounded-3xl p-6 md:p-8 transition-all duration-700 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ background: 'linear-gradient(135deg, #1d4ed8 0%, #0a1628 60%, #f59e0b 200%)' }}
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <div className="text-yellow-400 font-semibold text-sm mb-1 uppercase tracking-wide">🏆 Result Highlights 2024-25</div>
+              <div className="text-yellow-400 font-semibold text-sm mb-1 uppercase tracking-wide">Support Highlights</div>
               <h3 className="text-white text-2xl font-black" style={{ fontFamily: "'Playfair Display', serif" }}>
-                100% Pass Rate · Top District Ranks · Proud Alumni
+                Quick Response · On-site Service · Practical Solutions
               </h3>
               <p className="text-blue-200 text-sm mt-2">
-                Our students continue to excel year after year — in academics, sports, and life.
+                Share your requirement and we’ll recommend the right approach for your machine and production needs.
               </p>
             </div>
             <div className="flex gap-6 flex-shrink-0">
               {[
-                { num: '100%', label: 'Pass Rate' },
-                { num: '15+', label: 'Distinctions' },
-                { num: '#1', label: 'District Rank' },
+                { num: '24/7', label: 'Reachable' },
+                { num: 'Fast', label: 'Turnaround' },
+                { num: 'End-to-End', label: 'Support' },
               ].map((s, i) => (
                 <div key={i} className="text-center">
                   <div className="text-3xl font-black" style={{ color: '#f59e0b', fontFamily: "'Playfair Display', serif" }}>{s.num}</div>

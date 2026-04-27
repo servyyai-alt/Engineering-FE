@@ -1,19 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { FaBars, FaTimes, FaGraduationCap } from 'react-icons/fa';
-import school_icon from '../../assets/school_icon.png';
+import { FaBars, FaTimes } from 'react-icons/fa';
+import duraiLogo from '../../assets/durai_logo.svg';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
-  { label: 'Courses', href: '#courses' },
+  { label: 'Services', href: '#services' },
   { label: 'Why Us', href: '#why-us' },
   { label: 'Gallery', href: '#gallery' },
-  { label: 'Admission', href: '#admission' },
+  { label: 'Get Quote', href: '#inquiry' },
   { label: 'Contact', href: '#contact' },
 ];
 
-const Navbar = ({ onOpenAdmission }) => {
+const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('#home');
@@ -29,11 +28,6 @@ const Navbar = ({ onOpenAdmission }) => {
   const handleNavClick = (href) => {
     setActiveLink(href);
     setMenuOpen(false);
-
-    if (href === '#admission' && onOpenAdmission) {
-      onOpenAdmission();
-      return;
-    }
 
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -54,15 +48,14 @@ const Navbar = ({ onOpenAdmission }) => {
           <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleNavClick('#home')}>
             <div className="rounded-full flex items-center justify-center shadow-lg"
               style={{ background: 'linear-gradient(135deg, #1d4ed8, #f59e0b)' }}>
-              {/* <FaGraduationCap className="text-white text-xl" /> */}
-              <img src={school_icon} alt="School Logo" className="w-12 h-12" />
+              <img src={duraiLogo} alt="Durai Engineering Works" className="w-12 h-12" />
             </div>
             <div>
               <div className="text-white font-bold text-sm leading-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
-                ANNAI ABIRAMI
+                DURAI ENG WORKS
               </div>
               <div className="text-xs leading-tight" style={{ color: '#f59e0b', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                NATIONAL HR. SEC. SCHOOL
+                Aluminium Rolling Machines
               </div>
             </div>
           </div>
@@ -84,11 +77,11 @@ const Navbar = ({ onOpenAdmission }) => {
               </button>
             ))}
             <button
-              onClick={() => handleNavClick('#admission')}
+              onClick={() => handleNavClick('#inquiry')}
               className="ml-4 px-5 py-2.5 rounded-full text-sm font-bold text-white shadow-lg transition-all duration-300 hover:scale-105"
               style={{ background: 'linear-gradient(135deg, #1d4ed8, #1e40af)', boxShadow: '0 4px 15px rgba(29,78,216,0.4)' }}
             >
-              Apply Now
+              Get Quote
             </button>
           </div>
 
@@ -119,11 +112,11 @@ const Navbar = ({ onOpenAdmission }) => {
             ))}
             <div className="px-4 pt-2">
               <button
-                onClick={() => handleNavClick('#admission')}
+                onClick={() => handleNavClick('#inquiry')}
                 className="w-full py-3 rounded-full text-sm font-bold text-white"
                 style={{ background: 'linear-gradient(135deg, #1d4ed8, #f59e0b)' }}
               >
-                Apply for Admission
+                Get a Quote
               </button>
             </div>
           </div>

@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { FaTimes, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import poster from '../../assets/durai_poster.jpeg';
+import workshop1 from '../../assets/workshop1.jpeg';
+import workshop2 from '../../assets/workshop2.jpeg';
+import workshop3 from '../../assets/workshop3.jpeg';
+import service1 from '../../assets/service1.jpeg';
+import service2 from '../../assets/service2.jpeg';
+import service3 from '../../assets/service3.jpeg';
+import service4 from '../../assets/service4.jpeg';
+import service5 from '../../assets/service5.jpeg';
+import service6 from '../../assets/service6.jpeg';
+import service7 from '../../assets/service7.jpeg';
+import solutions1 from '../../assets/solutions1.jpeg';
+import solutions2 from '../../assets/solutions2.jpeg';
 
-const categories = ['All', 'Campus', 'Classrooms', 'Events', 'Activities'];
+const categories = ['All', 'Workshop', 'Machines', 'Service', 'Solutions'];
 
 const galleryImages = [
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.32_PM_srsggu.jpg', category: 'Activities', label: 'Sports Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.21.43_PM_1_ykr2gr.jpg', category: 'Campus', label: 'School Building' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.44_PM_epkswa.jpg', category: 'Activities', label: 'Sports Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777012395/194.jpg_tmuuye.jpg', category: 'Events', label: 'Annual Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.31_PM_ya9cii.jpg', category: 'Activities', label: 'Sports Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777028666/WhatsApp_Image_2026-04-24_at_4.25.32_PM_1_q9cfxw.jpg', category: 'Activities', label: 'Sports Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777030613/WhatsApp_Image_2026-04-24_at_5.06.08_PM_i26g4l.jpg', category: 'Activities', label: 'Student Activities' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777030551/WhatsApp_Image_2026-04-24_at_5.04.42_PM_in1xdt.jpg', category: 'Activities', label: 'Student Activities' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.44_PM_1_ffvnkh.jpg', category: 'Activities', label: 'Classroom Activities' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.43_PM_1_qu17vp.jpg', category: 'Activities', label: 'Sport Day' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.42_PM_xqdw2n.jpg', category: 'Classrooms', label: 'Classroom Activities' },
-  { src: 'https://res.cloudinary.com/drbw02kdu/image/upload/v1777031386/WhatsApp_Image_2026-04-24_at_5.17.43_PM_qtvabf.jpg', category: 'Events', label: 'Cultural Fest' },
+  { src: solutions2, category: 'Solutions', label: 'Workshop & Fabrication' },
+  { src: workshop1, category: 'Machines', label: 'Aluminium Rolling Machine' },
+  { src: workshop2, category: 'Workshop', label: 'Service & Maintenance' },
+  { src: workshop3, category: 'Workshop', label: 'Industrial Solutions' },
+  { src: service1, category: 'Service', label: 'Industrial Solutions' },
+  { src: service2, category: 'Service', label: 'New & Used Machines' },
+  { src: service3, category: 'Service', label: 'On-site Support' },
+  { src: service4, category: 'Machines', label: 'Complete Support' },
+  { src: service5, category: 'Machines', label: 'Build Quality' },
+  { src: service6, category: 'Service', label: 'Precision Engineering' },
+  { src: service7, category: 'Workshop', label: 'Customer Satisfaction' },
+  { src: solutions1, category: 'Solutions', label: 'Industrial Solutions' },
 ];
 
 const Gallery = () => {
@@ -44,10 +57,10 @@ const Gallery = () => {
           </span>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 section-title mb-4"
             style={{ fontFamily: "'Playfair Display', serif" }}>
-            Life at <span className="gold-text">Annai Abirami</span>
+            Our <span className="gold-text">Work</span> Gallery
           </h2>
           <p className="text-gray-600 max-w-xl mx-auto">
-            Glimpses of our vibrant school life — from classrooms to playgrounds, events to achievements.
+            A snapshot of our workshop work, machines, and service support.
           </p>
         </div>
 
@@ -116,7 +129,7 @@ const Gallery = () => {
             <FaChevronLeft />
           </button>
           <img
-            src={filtered[lightbox].src.replace('w=600', 'w=1200')}
+            src={filtered[lightbox].src}
             alt={filtered[lightbox].label}
             className="max-h-[85vh] max-w-[90vw] rounded-2xl shadow-2xl object-contain"
             onClick={(e) => e.stopPropagation()}
