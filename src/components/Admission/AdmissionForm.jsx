@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { toast } from 'react-toastify';
-import { FaUpload, FaCheckCircle, FaUser, FaIdCard, FaMapMarkerAlt, FaFileAlt, FaGraduationCap } from 'react-icons/fa';
+import { FaUpload, FaCheckCircle, FaUser, FaIdCard, FaMapMarkerAlt, FaFileAlt, FaGraduationCap, FaUsers } from 'react-icons/fa';
 import api from '../../utils/api';
 
 const admissionClasses = ['LKG', 'UKG', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI', 'XII'];
@@ -105,7 +105,7 @@ const AdmissionForm = ({ variant = 'section' }) => {
     <Wrapper
       ref={ref}
       {...(variant !== 'modal' && { id: 'admission' })}
-      className={`relative overflow-hidden ${variant === 'modal' ? 'py-4' : 'py-20 px-4 bg-slate-950'}`}
+      className={`relative overflow-hidden ${variant === 'modal' ? 'py-4' : 'py-14 sm:py-20 px-4 sm:px-6 bg-slate-950'}`}
     >
       {/* Decorative glass blobs */}
       <div aria-hidden className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -119,29 +119,29 @@ const AdmissionForm = ({ variant = 'section' }) => {
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-bold mb-4 backdrop-blur-md">
             <FaGraduationCap className="animate-bounce" /> ADMISSION OPEN 2025-26
           </span>
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white mb-4 tracking-tight" style={{ fontFamily: "'Playfair Display', serif" }}>
             Start Your <span className="text-blue-500">Journey</span>
           </h2>
         </div>
 
         {/* Form Container (The Glass Card) */}
         <div 
-          className={`relative border border-white/20 bg-white/5 backdrop-blur-3xl rounded-[40px] overflow-hidden shadow-2xl transition-all duration-700 delay-200 ${inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
+          className={`relative border border-white/20 bg-white/5 backdrop-blur-3xl rounded-[28px] sm:rounded-[40px] overflow-hidden shadow-2xl transition-all duration-700 delay-200 ${inView ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
           style={{ backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%)' }}
         >
-          <div className="bg-white/5 backdrop-blur-md border-b border-white/10 px-8 py-6">
+          <div className="bg-white/5 backdrop-blur-md border-b border-white/10 px-5 sm:px-8 py-6">
             <h3 className="text-white font-bold text-xl">Admission Application Form</h3>
             <p className="text-white/40 text-xs mt-1">Please provide accurate information for verification.</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-8 md:p-12 space-y-10">
+          <form onSubmit={handleSubmit} className="p-5 sm:p-8 md:p-12 space-y-10">
             {/* Student Info */}
             <section>
               <div className="flex items-center gap-3 mb-6 text-blue-400">
                 <FaUser />
                 <h4 className="font-bold text-white uppercase tracking-wider text-sm">Student Information</h4>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-white ml-1">Admission Class *</label>
                   <select name="admissionClass" value={form.admissionClass} onChange={handleChange} className={`${inputClass} appearance-none`}>
@@ -175,7 +175,7 @@ const AdmissionForm = ({ variant = 'section' }) => {
                 <FaIdCard />
                 <h4 className="font-bold text-white uppercase tracking-wider text-sm">Parent/Guardian Information</h4>
               </div>
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                 <div className="space-y-2">
                   <label className="text-xs font-semibold text-white ml-1">Parent Name *</label>
                   <input type="text" name="parentName" value={form.parentName} onChange={handleChange} className={inputClass} />
@@ -185,6 +185,90 @@ const AdmissionForm = ({ variant = 'section' }) => {
                   <label className="text-xs font-semibold text-white ml-1">Contact Number *</label>
                   <input type="tel" name="contactNumber" value={form.contactNumber} onChange={handleChange} maxLength="10" className={inputClass} />
                   {errors.contactNumber && <p className="text-red-400 text-[10px] ml-1">{errors.contactNumber}</p>}
+                </div>
+              </div>
+            </section>
+
+            {/* Family Details */}
+            <section>
+              <div className="flex items-center gap-3 mb-6 text-blue-400">
+                <FaUsers />
+                <h4 className="font-bold text-white uppercase tracking-wider text-sm">Family Details</h4>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Father's Occupation</label>
+                  <input
+                    type="text"
+                    name="fatherOccupation"
+                    value={form.fatherOccupation}
+                    onChange={handleChange}
+                    placeholder="e.g., Business / Private / Govt."
+                    className={inputClass}
+                  />
+                </div>
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Father's Income</label>
+                  <input
+                    type="number"
+                    min="0"
+                    inputMode="numeric"
+                    name="fatherIncome"
+                    value={form.fatherIncome}
+                    onChange={handleChange}
+                    placeholder="Annual income"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Mother's Occupation</label>
+                  <input
+                    type="text"
+                    name="motherOccupation"
+                    value={form.motherOccupation}
+                    onChange={handleChange}
+                    placeholder="e.g., Homemaker / Private / Govt."
+                    className={inputClass}
+                  />
+                </div>
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Mother's Income</label>
+                  <input
+                    type="number"
+                    min="0"
+                    inputMode="numeric"
+                    name="motherIncome"
+                    value={form.motherIncome}
+                    onChange={handleChange}
+                    placeholder="Annual income"
+                    className={inputClass}
+                  />
+                </div>
+
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Caste</label>
+                  <input
+                    type="text"
+                    name="caste"
+                    value={form.caste}
+                    onChange={handleChange}
+                    placeholder="Enter caste"
+                    className={inputClass}
+                  />
+                </div>
+                <div className="space-y-2 min-w-0">
+                  <label className="text-xs font-semibold text-white ml-1">Religion</label>
+                  <select
+                    name="religion"
+                    value={form.religion}
+                    onChange={handleChange}
+                    className={`${inputClass} appearance-none`}
+                  >
+                    <option value="" className="bg-slate-900">Select</option>
+                    {religions.map(r => <option key={r} value={r} className="bg-slate-900">{r}</option>)}
+                  </select>
                 </div>
               </div>
             </section>

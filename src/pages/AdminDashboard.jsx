@@ -130,6 +130,10 @@ const AdminDashboard = () => {
       "Blood Group",
       "Religion",
       "Caste",
+      "Father Occupation",
+      "Father Income",
+      "Mother Occupation",
+      "Mother Income",
       "Status",
       "Date",
     ];
@@ -141,6 +145,10 @@ const AdminDashboard = () => {
       a.bloodGroup,
       a.religion,
       a.caste,
+      a.fatherOccupation,
+      a.fatherIncome,
+      a.motherOccupation,
+      a.motherIncome,
       a.status,
       new Date(a.createdAt).toLocaleDateString(),
     ]);
