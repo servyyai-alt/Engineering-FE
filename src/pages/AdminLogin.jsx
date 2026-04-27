@@ -33,7 +33,11 @@ const AdminLogin = () => {
       toast.success("Login successful!");
       navigate("/admin/dashboard");
     } catch (err) {
-      toast.error(err.response?.data?.message || "Invalid credentials");
+      if (err.response?.status === 401) {
+        toast.error("Invalid credentials");
+      } else {
+        toast.error(err.response?.data?.message || "Login failed. Please try again.");
+      }
     } finally {
       setLoading(false);
     }

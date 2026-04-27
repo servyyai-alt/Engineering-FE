@@ -130,7 +130,7 @@ const AboutUs = () => {
                     className="flex-1 text-center glass rounded-xl py-3"
                   >
                     <div
-                      className="text-xl font-black"
+                      className="text-lg font-black"
                       style={{
                         color: "#f59e0b",
                         fontFamily: "'Playfair Display', serif",

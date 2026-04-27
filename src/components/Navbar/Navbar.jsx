@@ -12,7 +12,7 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-const Navbar = () => {
+const Navbar = ({ onOpenInquiry }) => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('#home');
@@ -28,6 +28,11 @@ const Navbar = () => {
   const handleNavClick = (href) => {
     setActiveLink(href);
     setMenuOpen(false);
+
+    if (href === '#inquiry' && onOpenInquiry) {
+      onOpenInquiry();
+      return;
+    }
 
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });

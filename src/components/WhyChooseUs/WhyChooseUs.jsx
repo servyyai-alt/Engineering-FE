@@ -107,12 +107,12 @@ const WhyChooseUs = () => {
 
         {/* Stats Bar */}
         <div
-          className={`mt-16 rounded-3xl p-8 transition-all duration-700 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          className={`mt-16 rounded-3xl p-6 transition-all duration-700 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ background: 'linear-gradient(135deg, #0a1628, #1a3a5c)' }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4">
             {[
-              { num: 'Manufacturing', label: 'Machines & Spares' },
+              { num: 'Manufacture', label: 'Machines & Spares' },
               { num: 'Service', label: 'On-site Support' },
               { num: 'Buy / Sale', label: 'New & Used Options' },
               { num: 'Solutions', label: 'Industrial Needs' },

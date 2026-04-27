@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Hero from '../components/Hero/Hero';
 import AboutUs from '../components/About/About';
@@ -11,22 +11,38 @@ import InquiryForm from '../components/Inquiry/InquiryForm';
 import Contact from '../components/Contact/Contact';
 import Footer from '../components/Footer/Footer';
 import WhatsAppFloat from '../components/common/WhatsAppFloat';
+import Modal from '../components/common/Modal';
 
 const HomePage = () => {
+  const [inquiryOpen, setInquiryOpen] = useState(false);
+
+  useEffect(() => {
+    setInquiryOpen(true);
+  }, []);
+
+  const openInquiry = () => setInquiryOpen(true);
+  const closeInquiry = () => setInquiryOpen(false);
+
   return (
     <div className="min-h-screen">
-      <Navbar />
-      <Hero />
+      <Navbar onOpenInquiry={openInquiry} />
+      <Hero onOpenInquiry={openInquiry} />
       <AboutUs />
-      <Services />
+      <Services onOpenInquiry={openInquiry} />
       <WhyChooseUs />
       <Gallery />
       <NewsSection />
       <Testimonials />
       <InquiryForm />
       <Contact />
-      <Footer />
+      <Footer onOpenInquiry={openInquiry} />
       <WhatsAppFloat />
+
+      {inquiryOpen && (
+        <Modal title="Request a Quote / Inquiry" onClose={closeInquiry}>
+          <InquiryForm variant="modal" />
+        </Modal>
+      )}
     </div>
   );
 };

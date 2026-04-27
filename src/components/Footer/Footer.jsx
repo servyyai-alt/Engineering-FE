@@ -17,8 +17,12 @@ const quickLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-const Footer = () => {
+const Footer = ({ onOpenInquiry }) => {
   const scrollTo = (href) => {
+    if (href === '#inquiry' && onOpenInquiry) {
+      onOpenInquiry();
+      return;
+    }
     const el = document.querySelector(href);
     if (el) el.scrollIntoView({ behavior: 'smooth' });
   };
@@ -56,7 +60,7 @@ const Footer = () => {
                 style={{ background: 'rgba(66,103,178,0.2)', color: '#4267B2' }}>
                 <FaFacebook />
               </a>
-              <a href="https://wa.me/919884957853?text=Hello%20Durai%20Eng%20Works%2C%20I%20need%20support%20for%20an%20aluminium%20rolling%20machine."
+              <a href="https://wa.me/9487624853?text=Hello%20Durai%20Eng%20Works%2C%20I%20need%20support%20for%20an%20aluminium%20rolling%20machine."
                 target="_blank" rel="noopener noreferrer"
                 className="w-10 h-10 rounded-xl flex items-center justify-center transition-all hover:scale-110"
                 style={{ background: 'rgba(37,211,102,0.2)', color: '#25D366' }}>

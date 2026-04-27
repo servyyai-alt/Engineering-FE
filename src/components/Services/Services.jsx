@@ -41,7 +41,7 @@ const services = [
   },
 ];
 
-const Services = () => {
+const Services = ({ onOpenInquiry }) => {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
@@ -105,7 +105,7 @@ const Services = () => {
                 </div>
 
                 <button
-                  onClick={() => document.querySelector('#inquiry')?.scrollIntoView({ behavior: 'smooth' })}
+                  onClick={() => (onOpenInquiry ? onOpenInquiry() : document.querySelector('#inquiry')?.scrollIntoView({ behavior: 'smooth' }))}
                   className="mt-6 w-full py-3.5 rounded-2xl font-bold text-white flex items-center justify-center gap-2 transition-all hover:gap-4"
                   style={{ background: 'linear-gradient(135deg, #1d4ed8, #f59e0b)' }}
                 >

@@ -4,7 +4,7 @@ import { FaWhatsapp, FaTimes } from 'react-icons/fa';
 const WhatsAppFloat = () => {
   const [showTooltip, setShowTooltip] = useState(true);
 
-  const waLink = "https://wa.me/919884957853?text=Hello%20Durai%20Eng%20Works%2C%20I%20need%20support%20for%20an%20aluminium%20rolling%20machine.";
+  const waLink = "https://wa.me/9487624853?text=Hello%20Durai%20Eng%20Works%2C%20I%20need%20support%20for%20an%20aluminium%20rolling%20machine.";
 
   return (
     <div className="whatsapp-float">

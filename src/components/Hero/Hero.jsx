@@ -9,7 +9,7 @@ const highlights = [
   { icon: <FaWrench />, label: 'Maintenance & Spares', color: '#ef4444' },
 ];
 
-const Hero = () => {
+const Hero = ({ onOpenInquiry }) => {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -133,7 +133,7 @@ const Hero = () => {
             style={{ transitionDelay: '0.6s' }}
           >
             <button
-              onClick={() => scrollTo('#inquiry')}
+              onClick={() => (onOpenInquiry ? onOpenInquiry() : scrollTo('#inquiry'))}
               className="btn-primary flex items-center gap-2"
             >
               Get Quote <FaArrowRight className="text-sm" />

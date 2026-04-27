@@ -1,16 +1,28 @@
 {
   "files": {
     "main.css": "/static/css/main.03b3003c.css",
-    "main.js": "/static/js/main.2e19a91b.js",
-    "static/media/durai_poster.jpeg": "/static/media/durai_poster.d1c9010f922958704f9d.jpeg",
+    "main.js": "/static/js/main.1956864c.js",
+    "static/media/workshop2.jpeg": "/static/media/workshop2.af0398d0771a1106231c.jpeg",
+    "static/media/workshop1.jpeg": "/static/media/workshop1.4dadd9ca6459e167ed3c.jpeg",
+    "static/media/service5.jpeg": "/static/media/service5.6e62b280d7652d24f1c5.jpeg",
+    "static/media/durai_poster.jpeg": "/static/media/durai_poster.1d5518ab14c905051191.jpeg",
+    "static/media/service3.jpeg": "/static/media/service3.e736ebfcda20137da0a4.jpeg",
+    "static/media/service2.jpeg": "/static/media/service2.2bdc2656470b9ff06217.jpeg",
+    "static/media/service4.jpeg": "/static/media/service4.ae49ad73b57bf8e36c21.jpeg",
+    "static/media/service6.jpeg": "/static/media/service6.bf7da12c7ef187ca9c92.jpeg",
+    "static/media/service1.jpeg": "/static/media/service1.d4bd719cf6207e37c739.jpeg",
+    "static/media/service7.jpeg": "/static/media/service7.35955a0d5fdf608de237.jpeg",
+    "static/media/workshop3.jpeg": "/static/media/workshop3.b55db8d7e1aa5a217ee7.jpeg",
+    "static/media/solutions1.jpeg": "/static/media/solutions1.1873b36124a710d372e0.jpeg",
     "static/media/location_qr.jpeg": "/static/media/location_qr.2d86f2406e418f1e6c20.jpeg",
+    "static/media/solutions2.jpeg": "/static/media/solutions2.0a3c8b3a32eabc24db26.jpeg",
     "index.html": "/index.html",
     "static/media/durai_logo.svg": "/static/media/durai_logo.38688e6a33367e2cadbb001ef2d605cb.svg",
     "main.03b3003c.css.map": "/static/css/main.03b3003c.css.map",
-    "main.2e19a91b.js.map": "/static/js/main.2e19a91b.js.map"
+    "main.1956864c.js.map": "/static/js/main.1956864c.js.map"
   },
   "entrypoints": [
     "static/css/main.03b3003c.css",
-    "static/js/main.2e19a91b.js"
+    "static/js/main.1956864c.js"
   ]
 }
