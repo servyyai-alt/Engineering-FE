@@ -18,9 +18,15 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (res) => res,
   (err) => {
-    if (err.response?.status === 401) {
+    const status = err.response?.status;
+    const url = err.config?.url || '';
+    const isLoginRequest = url.includes('/api/admin/login');
+
+    if (status === 401 && !isLoginRequest) {
       localStorage.removeItem('adminToken');
-      window.location.href = '/admin/login';
+      if (window.location.pathname !== '/admin/login') {
+        window.location.href = '/admin/login';
+      }
     }
     return Promise.reject(err);
   }

@@ -244,7 +244,7 @@ const AdminDashboard = () => {
         <main className="flex-1 overflow-auto">
           {/* Top Bar */}
           <div
-            className="sticky top-0 z-30 px-6 py-4 flex items-center justify-between"
+            className="sticky top-0 z-30 px-4 sm:px-6 py-4 flex items-center justify-between gap-3"
             style={{
               background: "rgba(255,255,255,0.95)",
               backdropFilter: "blur(10px)",
@@ -252,32 +252,34 @@ const AdminDashboard = () => {
             }}
           >
             <h1
-              className="text-xl font-black text-gray-900"
+              className="text-lg sm:text-xl font-black text-gray-900"
               style={{ fontFamily: "'Playfair Display', serif" }}
             >
               Inquiries
             </h1>
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
               <button
                 onClick={downloadCSV}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105"
                 style={{
                   background: "linear-gradient(135deg, #10b981, #059669)",
                 }}
               >
-                <FaDownload /> Export CSV
+                <FaDownload />
+                <span className="hidden sm:inline">Export CSV</span>
               </button>
               <button
                 onClick={handleLogout}
-                className="lg:hidden flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-white"
+                className="lg:hidden flex items-center gap-2 px-3 sm:px-4 py-2 rounded-xl text-sm font-semibold text-white"
                 style={{ background: "#ef4444" }}
               >
                 <FaSignOutAlt />
+                <span className="hidden sm:inline">Logout</span>
               </button>
             </div>
           </div>
 
-          <div className="p-6">
+          <div className="p-4 sm:p-6">
             {/* Stats Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
               {[
@@ -340,8 +342,8 @@ const AdminDashboard = () => {
             </div>
 
             {/* Filters */}
-            <div className="bg-white rounded-2xl p-4 shadow-sm mb-6 flex flex-wrap gap-3 items-center">
-              <div className="relative flex-1 min-w-48">
+            <div className="bg-white rounded-2xl p-4 shadow-sm mb-6 flex flex-wrap gap-3 items-stretch sm:items-center">
+              <div className="relative flex-1 min-w-0 w-full sm:min-w-48">
                 <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm" />
                 <input
                   type="text"
@@ -354,7 +356,7 @@ const AdminDashboard = () => {
               <select
                 value={filterService}
                 onChange={(e) => setFilterService(e.target.value)}
-                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
               >
                 <option value="">All Services</option>
                 {SERVICE_TYPES.map((t) => (
@@ -366,14 +368,14 @@ const AdminDashboard = () => {
               <select
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value)}
-                className="px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-blue-400 text-gray-600"
               >
                 <option value="">All Status</option>
                 <option value="new">New</option>
                 <option value="in_progress">In Progress</option>
                 <option value="closed">Closed</option>
               </select>
-              <span className="text-gray-500 text-sm font-medium ml-auto">
+              <span className="text-gray-500 text-sm font-medium sm:ml-auto self-center">
                 {filtered.length} records
               </span>
             </div>

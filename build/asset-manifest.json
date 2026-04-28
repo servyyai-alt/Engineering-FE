@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.03b3003c.css",
-    "main.js": "/static/js/main.1956864c.js",
+    "main.css": "/static/css/main.000c9a35.css",
+    "main.js": "/static/js/main.ef8ff82e.js",
     "static/media/workshop2.jpeg": "/static/media/workshop2.af0398d0771a1106231c.jpeg",
     "static/media/workshop1.jpeg": "/static/media/workshop1.4dadd9ca6459e167ed3c.jpeg",
     "static/media/service5.jpeg": "/static/media/service5.6e62b280d7652d24f1c5.jpeg",
@@ -18,11 +18,11 @@
     "static/media/solutions2.jpeg": "/static/media/solutions2.0a3c8b3a32eabc24db26.jpeg",
     "index.html": "/index.html",
     "static/media/durai_logo.svg": "/static/media/durai_logo.38688e6a33367e2cadbb001ef2d605cb.svg",
-    "main.03b3003c.css.map": "/static/css/main.03b3003c.css.map",
-    "main.1956864c.js.map": "/static/js/main.1956864c.js.map"
+    "main.000c9a35.css.map": "/static/css/main.000c9a35.css.map",
+    "main.ef8ff82e.js.map": "/static/js/main.ef8ff82e.js.map"
   },
   "entrypoints": [
-    "static/css/main.03b3003c.css",
-    "static/js/main.1956864c.js"
+    "static/css/main.000c9a35.css",
+    "static/js/main.ef8ff82e.js"
   ]
 }

@@ -32,11 +32,11 @@ const WhatsAppFloat = () => {
         href={waLink}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-16 h-16 rounded-full flex items-center justify-center text-white shadow-2xl transition-all hover:scale-110 relative"
+        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center text-white shadow-2xl transition-all hover:scale-110 relative"
         style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)', boxShadow: '0 8px 30px rgba(37,211,102,0.5)' }}
         onClick={() => setShowTooltip(false)}
       >
-        <FaWhatsapp className="text-3xl" />
+        <FaWhatsapp className="text-2xl sm:text-3xl" />
         {/* Ping ring */}
         <span className="absolute inset-0 rounded-full animate-ping opacity-30"
           style={{ background: '#25D366' }} />

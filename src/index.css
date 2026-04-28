@@ -185,6 +185,18 @@ a, button {
   animation: float 3s ease-in-out infinite;
 }
 
+@media (max-width: 640px) {
+  .whatsapp-float {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+
+/* Ensure toast notifications always appear above overlays/modals */
+.Toastify__toast-container {
+  z-index: 100000 !important;
+}
+
 /* Particle effect */
 .particle {
   position: absolute;

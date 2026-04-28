@@ -149,14 +149,14 @@ const Footer = ({ onOpenInquiry }) => {
           <p className="text-gray-500 text-sm">
             © {new Date().getFullYear()} Durai Engineering Works. All rights reserved.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             <Link to="/admin/login"
               className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
               Admin Login
             </Link>
-            <span className="text-gray-700">·</span>
+            <span className="text-gray-700 hidden sm:inline">·</span>
             <span className="text-gray-600 text-xs">Privacy Policy</span>
-            <span className="text-gray-700">·</span>
+            <span className="text-gray-700 hidden sm:inline">·</span>
             <span className="text-gray-600 text-xs">Terms of Use</span>
           </div>
         </div>
