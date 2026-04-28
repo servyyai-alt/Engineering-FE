@@ -110,7 +110,7 @@ const WhyChooseUs = () => {
           className={`mt-16 rounded-3xl p-6 transition-all duration-700 delay-400 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
           style={{ background: 'linear-gradient(135deg, #0a1628, #1a3a5c)' }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols- lg:grid-cols-4">
             {[
               { num: 'Manufacture', label: 'Machines & Spares' },
               { num: 'Service', label: 'On-site Support' },
