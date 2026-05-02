@@ -24,7 +24,7 @@ const HomePage = () => {
   const closeInquiry = () => setInquiryOpen(false);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-hidden">
       <Navbar onOpenInquiry={openInquiry} />
       <Hero onOpenInquiry={openInquiry} />
       <AboutUs />
