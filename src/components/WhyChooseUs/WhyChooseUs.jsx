@@ -118,7 +118,7 @@ const WhyChooseUs = () => {
               { num: 'Solutions', label: 'Industrial Needs' },
             ].map((stat, i) => (
               <div key={i} className="text-center">
-                <div className="stat-number">{stat.num}</div>
+                <div className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-extrabold bg-gradient-to-br from-amber-500 to-amber-300 bg-clip-text text-transparent">{stat.num}</div>
                 <div className="text-gray-400 font-medium mt-1">{stat.label}</div>
               </div>
             ))}

@@ -35,10 +35,10 @@ const Footer = ({ onOpenInquiry }) => {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-5">
-               <div className="rounded-full flex items-center justify-center shadow-lg"
-                            style={{ background: 'linear-gradient(135deg, #1d4ed8, #f59e0b)' }}>
-                            <img src={duraiLogo} alt="Durai Engineering Works" className="w-12 h-12" />
-                          </div>
+              <div className="rounded-full flex items-center justify-center shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #1d4ed8, #f59e0b)' }}>
+                <img src={duraiLogo} alt="Durai Engineering Works" className="w-12 h-12" />
+              </div>
               <div>
                 <div className="text-white font-bold text-sm" style={{ fontFamily: "'Playfair Display', serif" }}>
                   DURAI ENG WORKS
@@ -150,8 +150,10 @@ const Footer = ({ onOpenInquiry }) => {
             © {new Date().getFullYear()} Durai Engineering Works. All rights reserved.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
-            <Link to="/admin/login"
-              className="text-gray-600 hover:text-gray-400 text-xs transition-colors">
+            <Link
+              to="/admin/login"
+              className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-4 py-2 rounded-full transition"
+            >
               Admin Login
             </Link>
             <span className="text-gray-700 hidden sm:inline">·</span>
