@@ -79,7 +79,7 @@ const InquiryForm = ({ variant = 'section' }) => {
 
   if (success) {
     return (
-      <Wrapper className="flex items-center justify-center p-6 min-h-[360px]">
+      <Wrapper className="flex items-center justify-center p-6 min-h-[320px]">
         <div className="bg-white/10 backdrop-blur-3xl border border-white/30 p-10 rounded-[40px] text-center shadow-2xl animate-in zoom-in-95">
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-green-500/30">
             <FaCheckCircle className="text-white text-4xl" />
